@@ -27,36 +27,42 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
-public class GameForm implements Runnable{
+public abstract class GameForm implements Runnable{
 
+	//????????
+	private Thread thread;
+	//to control the loop in run()
+	private boolean running=false;
+	
 	public JFrame frmGame;
-	private Thread thread;//????????
-	private boolean running=false;//to control the loop in run()
-	
 	public static Canvas canvas = new Canvas();
-	private BufferStrategy bs;//To allow drawing
-	public Graphics g;//g is like a paint brush
 	
-	private BufferedImage test;
+	//To allow drawing
+	protected BufferStrategy bs;
+	
+	//g is like a paint brush
+	public Graphics g;
 	
 	private SpriteSheet sheet;				
-			//state
-			private state gamestate;
+	//state
+	protected state gamestate;
 			
-			//Input
-			private KeyManager keyManager;
+
+	
+	
 	
 	/**
 	 * Create the application.
 	 */
 	public GameForm() {
-		keyManager = new KeyManager();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	protected void initialize() {
+		
+		//form
 		frmGame = new JFrame();
 		frmGame.setTitle("Game");
 		Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();
@@ -71,6 +77,7 @@ public class GameForm implements Runnable{
 		frmGame.getContentPane().setLayout(gridBagLayout);
 		frmGame.setResizable(false);
 		
+		//panel
 		Panel panel = new Panel();
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.fill = GridBagConstraints.BOTH;
@@ -82,8 +89,7 @@ public class GameForm implements Runnable{
 		panel.setBackground(Color.CYAN);
 		panel.setSize(frmGame.getWidth()*1/5, frmGame.getHeight());
 		
-
-		// canvas.setBackground(Color.BLACK);
+		//canvas
 		canvas.setSize(frmGame.getWidth()*4/5, frmGame.getHeight());
 		GridBagConstraints gbc_canvas = new GridBagConstraints();
 		gbc_canvas.fill = GridBagConstraints.BOTH;
@@ -95,65 +101,11 @@ public class GameForm implements Runnable{
 
 	}
 	
-	private void init()
-	{
-		initialize();
-		Assets.init();  
-		gamestate=new GameState(this);
-		state.setState(gamestate);
-		frmGame.addKeyListener(keyManager);
-
-	}
+	protected abstract void init();
 	
-	private void tick() 
-	{
-		keyManager.tick();		
-		if(state.getState()!=null)
-		state.getState().tick();
-		 
-	}
+	protected abstract void tick() ;
 
-	private void render() {
-		bs = canvas.getBufferStrategy();
-		if(bs==null) {
-			canvas.createBufferStrategy(3);//number of buffers
-			return;
-		}
-		g=bs.getDrawGraphics();
-		
-		//clear screen
-		g.clearRect(0, 0,canvas.getWidth(), canvas.getHeight());
-		
-		//Draw Here
-		
-		g.drawImage(Assets.bg,0, 0,canvas.getWidth(),canvas.getHeight(), null);
-		
-		g.drawImage(Assets.H_block,canvas.getWidth()*45/105, canvas.getHeight()*27/100,canvas.getWidth()*11/125,canvas.getHeight()*1/70,null);
-		g.drawImage(Assets.H_block,canvas.getWidth()*54/105, canvas.getHeight()*27/100,canvas.getWidth()*11/125,canvas.getHeight()*1/70,null);
-		
-	
-		g.drawImage(Assets.H_block,canvas.getWidth()*45/105, canvas.getHeight()*181/250,canvas.getWidth()*11/125,canvas.getHeight()*1/70,null);
-		g.drawImage(Assets.H_block,canvas.getWidth()*54/105, canvas.getHeight()*181/250,canvas.getWidth()*11/125,canvas.getHeight()*1/70,null);
-
-		
-		g.drawImage(Assets.V_block,canvas.getWidth()*69/100, canvas.getHeight()*203/500, canvas.getWidth()*1/70,canvas.getHeight()*1/10 ,null);
-		g.drawImage(Assets.V_block,canvas.getWidth()*69/100, canvas.getHeight()*63/125, canvas.getWidth()*1/70,canvas.getHeight()*1/10,null);
-
-		
-		g.drawImage(Assets.V_block,canvas.getWidth()*165/500, canvas.getHeight()*203/500, canvas.getWidth()*1/70,canvas.getHeight()*1/10 ,null);
-		g.drawImage(Assets.V_block,canvas.getWidth()*165/500, canvas.getHeight()*63/125, canvas.getWidth()*1/70,canvas.getHeight()*1/10,null);
-
-		
-		if(state.getState()!=null)
-			state.getState().render(g);
-
-		
-		//End Drawing
-		bs.show();
-		g.dispose(); 
-		
-	}
-	public float[] blockDimension;
+	protected abstract void render(); 
 	
 	public void run(){
 		init();
@@ -175,10 +127,6 @@ public class GameForm implements Runnable{
 		
 		stop();
 	}
-	public KeyManager getKeyManager() {
-		return keyManager;
-		}
-	
 	public synchronized void start() {
 		if(running)
 			return;

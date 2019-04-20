@@ -2,9 +2,8 @@ package Start;
 
 
 import forms.GameForm;
+import forms.IF_form;
 import forms.Main_Form;
-import forms.Test;
-
 public class Launcher 
 {
 
@@ -13,7 +12,7 @@ public class Launcher
 
 		//Main_Form m = new Main_Form();
 		//Test t = new Test();
-		GameForm g = new GameForm();
+		IF_form g = new IF_form();
 		g.start();
 	}
 }

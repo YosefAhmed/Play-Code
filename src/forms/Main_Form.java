@@ -41,7 +41,7 @@ public class Main_Form extends JFrame {
 		JButton lvl1Button = new JButton("");
 		lvl1Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GameForm game = new GameForm();
+				IF_form game = new IF_form();
 				game.start();
 				setVisible(false);
 			}

@@ -4,13 +4,14 @@ import java.awt.Graphics;
 
 import Entities.Player;
 import forms.GameForm;
+import forms.IF_form;
 import graphics.Assets;
 
 
 public class GameState extends state{
 
 	private Player player;
-	public GameState(GameForm game) {
+	public GameState(IF_form game) {
 		super(game);
 		player=new Player(game,game.canvas.getWidth()*48/100, 20);
 	}
