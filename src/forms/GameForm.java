@@ -6,6 +6,8 @@ import java.awt.Toolkit;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import Input.KeyManager;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import com.sun.javafx.geom.Rectangle;
@@ -21,6 +23,7 @@ import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Button;
 import java.awt.Panel;
 import java.awt.GridBagLayout;
@@ -35,8 +38,9 @@ public abstract class GameForm implements Runnable{
 	private boolean running=false;
 	
 	public JFrame frmGame;
-	public static Canvas canvas = new Canvas();
-	
+	protected static  Canvas canvas = new Canvas();
+	protected static Panel panel = new Panel();
+
 	//To allow drawing
 	protected BufferStrategy bs;
 	
@@ -78,16 +82,18 @@ public abstract class GameForm implements Runnable{
 		frmGame.setResizable(false);
 		
 		//panel
-		Panel panel = new Panel();
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.fill = GridBagConstraints.BOTH;
 		gbc_panel.insets = new Insets(0, 0, 0, 5);
 		gbc_panel.gridx = 0;
 		gbc_panel.gridy = 0;
-		frmGame.getContentPane().add(panel, gbc_panel);
-		panel.setLayout(new GridLayout(0, 1, 1, 1));
-		panel.setBackground(Color.CYAN);
+		
+		//panel.setLayout(new GridLayout(0, 1, 1, 1));
+		panel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		panel.setSize(frmGame.getWidth()*1/5, frmGame.getHeight());
+		frmGame.getContentPane().add(panel, gbc_panel);
+		
+		
 		
 		//canvas
 		canvas.setSize(frmGame.getWidth()*4/5, frmGame.getHeight());
@@ -101,6 +107,8 @@ public abstract class GameForm implements Runnable{
 
 	}
 	
+	protected abstract Panel get_panel();
+
 	protected abstract void init();
 	
 	protected abstract void tick() ;
@@ -110,7 +118,7 @@ public abstract class GameForm implements Runnable{
 	public void run(){
 		init();
 		
-		int fbs=60;
+		int fbs=70;
 		double timePerTick=1000000000/fbs; 
 		double delta=0;
 		long now , lastTime=System.nanoTime();

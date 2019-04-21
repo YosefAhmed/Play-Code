@@ -1,6 +1,9 @@
 package forms;
 import java.awt.*;
 
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
 import Input.KeyManager;
 import States.GameState;
 import States.state;
@@ -23,6 +26,8 @@ public class IF_form extends GameForm {
 		state.setState(gamestate);
 		frmGame.addKeyListener(keyManager);
 
+		
+
 	}
 	
 		@Override
@@ -30,7 +35,7 @@ public class IF_form extends GameForm {
 		keyManager.tick();		
 		if(state.getState()!=null)
 		state.getState().tick();
-		 
+
 	}
 
 	@Override
@@ -55,16 +60,17 @@ public class IF_form extends GameForm {
 		g.drawImage(Assets.H_block,canvas.getWidth()*54/105, canvas.getHeight()*27/100,canvas.getWidth()*11/125,canvas.getHeight()*1/70,null);
 		
 		//down blocks
-		g.drawImage(Assets.H_block,canvas.getWidth()*45/105, canvas.getHeight()*181/250,canvas.getWidth()*11/125,canvas.getHeight()*1/70,null);
-		g.drawImage(Assets.H_block,canvas.getWidth()*54/105, canvas.getHeight()*181/250,canvas.getWidth()*11/125,canvas.getHeight()*1/70,null);
+		g.drawImage(Assets.H_block,canvas.getWidth()*39/106, canvas.getHeight()*181/250,canvas.getWidth()*12/130,canvas.getHeight()*1/70,null);
+		g.drawImage(Assets.H_block,canvas.getWidth()*50/106, canvas.getHeight()*181/250,canvas.getWidth()*12/130,canvas.getHeight()*1/70,null);
+		g.drawImage(Assets.H_block,canvas.getWidth()*60/105, canvas.getHeight()*181/250,canvas.getWidth()*12/130,canvas.getHeight()*1/70,null);
 
 		//right blocks
-		g.drawImage(Assets.V_block,canvas.getWidth()*69/100, canvas.getHeight()*203/500, canvas.getWidth()*1/70,canvas.getHeight()*1/10 ,null);
-		g.drawImage(Assets.V_block,canvas.getWidth()*69/100, canvas.getHeight()*63/125, canvas.getWidth()*1/70,canvas.getHeight()*1/10,null);
+		g.drawImage(Assets.V_block,canvas.getWidth()*74/100, canvas.getHeight()*203/500, canvas.getWidth()*1/70,canvas.getHeight()*1/10 ,null);
+		g.drawImage(Assets.V_block,canvas.getWidth()*74/100, canvas.getHeight()*63/125, canvas.getWidth()*1/70,canvas.getHeight()*1/10,null);
 
 		//left blocks
-		g.drawImage(Assets.V_block,canvas.getWidth()*165/500, canvas.getHeight()*203/500, canvas.getWidth()*1/70,canvas.getHeight()*1/10 ,null);
-		g.drawImage(Assets.V_block,canvas.getWidth()*165/500, canvas.getHeight()*63/125, canvas.getWidth()*1/70,canvas.getHeight()*1/10,null);
+		g.drawImage(Assets.V_block,canvas.getWidth()*145/500, canvas.getHeight()*203/500, canvas.getWidth()*1/70,canvas.getHeight()*1/10 ,null);
+		g.drawImage(Assets.V_block,canvas.getWidth()*145/500, canvas.getHeight()*63/125, canvas.getWidth()*1/70,canvas.getHeight()*1/10,null);
 
 		
 		if(state.getState()!=null)
@@ -81,7 +87,13 @@ public class IF_form extends GameForm {
 		return keyManager;
 		}
 
+	public static Canvas get_canvas() {
+		return canvas;
+	}
 
+	public Panel get_panel() {
+		return panel;
+	}
 
 
 }

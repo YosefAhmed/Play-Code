@@ -13,7 +13,7 @@ public class GameState extends state{
 	private Player player;
 	public GameState(IF_form game) {
 		super(game);
-		player=new Player(game,game.canvas.getWidth()*48/100, 20);
+		player=new Player(game,IF_form.get_canvas().getWidth()*48/100, 20);
 	}
 	@Override
 	public void tick() {
