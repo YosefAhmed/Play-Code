@@ -116,9 +116,10 @@ public abstract class GameForm implements Runnable{
 	protected abstract void render(); 
 	
 	public void run(){
+		
 		init();
 		
-		int fbs=70;
+		int fbs=80;
 		double timePerTick=1000000000/fbs; 
 		double delta=0;
 		long now , lastTime=System.nanoTime();

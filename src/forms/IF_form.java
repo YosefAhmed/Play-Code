@@ -13,7 +13,6 @@ public class IF_form extends GameForm {
 
 	//Input
 	protected KeyManager keyManager;
-	
 	public IF_form(){
 		keyManager = new KeyManager();
 	}
@@ -35,7 +34,6 @@ public class IF_form extends GameForm {
 		keyManager.tick();		
 		if(state.getState()!=null)
 		state.getState().tick();
-
 	}
 
 	@Override
@@ -72,6 +70,24 @@ public class IF_form extends GameForm {
 		g.drawImage(Assets.V_block,canvas.getWidth()*145/500, canvas.getHeight()*203/500, canvas.getWidth()*1/70,canvas.getHeight()*1/10 ,null);
 		g.drawImage(Assets.V_block,canvas.getWidth()*145/500, canvas.getHeight()*63/125, canvas.getWidth()*1/70,canvas.getHeight()*1/10,null);
 
+		for(int i=0;i<10;i++)
+		{
+			if(Assets.Messages[0])
+			{
+				g.drawImage(Assets.msgs[0],canvas.getWidth()*29/45, canvas.getHeight()*27/500, canvas.getWidth()*2/10,canvas.getHeight()*2/10 ,null);
+				
+			}
+		}
+		if(Assets.Messages[1])
+		{
+			g.drawImage(Assets.msgs[1],canvas.getWidth()*29/45, canvas.getHeight()*27/500, canvas.getWidth()*2/10,canvas.getHeight()*2/10 ,null);
+			
+		}
+		if(Assets.Messages[2])
+		{
+			g.drawImage(Assets.msgs[2],canvas.getWidth()*29/45, canvas.getHeight()*27/500, canvas.getWidth()*2/10,canvas.getHeight()*2/10 ,null);
+			
+		}
 		
 		if(state.getState()!=null)
 			state.getState().render(g);

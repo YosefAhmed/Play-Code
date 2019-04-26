@@ -28,7 +28,7 @@ public class Player extends Creature{
 	/**mark :char to mark the Y position
 	 * markX :char to mark the X position
 	 * */
-	String markY,markX;  
+	String markY,markX, down_blocks_markX;  
 	
 	
 	/**represents every tick */
@@ -55,14 +55,25 @@ public class Player extends Creature{
 		if(x>=IF_form.get_canvas().getWidth()*601/1000)
 			markX="r";  // right X	
 				
+		//Down blocks Mark X
+		if(x<=(IF_form.get_canvas().getWidth()*57/125)-4)
+			down_blocks_markX="L"; //left side
+		else if(x>=IF_form.get_canvas().getWidth()*57/125 && x<=IF_form.get_canvas().getWidth()*249/500)
+			down_blocks_markX="C"; //center
+		else if(x>=(IF_form.get_canvas().getWidth()*249/500)+4)
+			down_blocks_markX="R"; //right side
 		
-		//Left collision
+		
+		/*================================================== Left collision==================================*/
+		
 		if(x<=IF_form.get_canvas().getWidth()*83/200) {
 			
 			//if up left
-			if(markY=="u") {
-				if(y>=IF_form.get_canvas().getHeight()*33/200) {
-					bag.set_card("100 VIP");
+			if(markY=="u") 
+			{
+				if(y>=IF_form.get_canvas().getHeight()*10/200) 
+				{
+					bag.set_card("VIP");
 					bag.addComponants();
 				}
 				x=IF_form.get_canvas().getWidth()*83/200;
@@ -83,10 +94,12 @@ public class Player extends Creature{
 		   else 
 			   if(x<=IF_form.get_canvas().getWidth()*70/200)
 				  x=IF_form.get_canvas().getWidth()*70/200;
-		} /*left collision*/
+		} 
+		/*================================================== Left collision==================================*/
+
 		
+		/*================================================== right collision==================================*/
 		
-		//right collision
 		if(x>=IF_form.get_canvas().getWidth()*27/50) {
 			
 			//if up right
@@ -111,34 +124,109 @@ public class Player extends Creature{
 			    if(x>=IF_form.get_canvas().getWidth()*601/1000)
 					x=IF_form.get_canvas().getWidth()*601/1000;
 			
-		} /*right collision*/
+		} 
+		/*================================================== right collision==================================*/
+
 		
-			System.out.println(markY+" "+markX);
+		/*================================================== collision of down walk sides==================================*/
+	
+	//if center
+	if(markY=="c") {
+		
+		//if the character collides with any of the 2 walk sides from the top 
+		if(y>=IF_form.get_canvas().getHeight()*537/1000) {			
+			if(x>=IF_form.get_canvas().getWidth()*393/1000 && x<=IF_form.get_canvas().getWidth()*57/125 || x>=IF_form.get_canvas().getWidth()*249/500 && x<=IF_form.get_canvas().getWidth()*279/500 )
+				y=IF_form.get_canvas().getHeight()*537/1000;			
+		}
+	}
+	
+	//if down
+	else if(markY=="d") {
+		if(down_blocks_markX=="L") {
+			//if the character collides with the left walk sides from the left
+			if(x>=IF_form.get_canvas().getWidth()*393/1000)
+				x=IF_form.get_canvas().getWidth()*393/1000;
+		}
+		else if(down_blocks_markX=="C") {
+			//if the character collides with the left walk sides from the right
+			if(x<=IF_form.get_canvas().getWidth()*57/125)
+				x=IF_form.get_canvas().getWidth()*57/125;
+			
+			//if the character collides with the right walk sides from the left
+			else if(x>=IF_form.get_canvas().getWidth()*249/500)
+				x=IF_form.get_canvas().getWidth()*249/500;
+		}
+		else if(down_blocks_markX=="R") {
+			
+			//if the character collides with the left walk sides from the right
+			if(x<IF_form.get_canvas().getWidth()*279/500)
+				x=IF_form.get_canvas().getWidth()*279/500;
+		}
+	}
+		
+	/*================================================== collision of down walk sides==================================*/
+
+			System.out.println(markY+" "+markX+" "+down_blocks_markX);//just for testing :)
 
 			
+	/*================================================== collision of Blocks==================================*/
+			
 			//down blocks collision
-			if(markY=="d"&& markX=="c") { 
-				if(y>=IF_form.get_canvas().getHeight()*675/1000) //if down center X  
+			if(markY=="d"&& (markX=="c" ||markX=="r" )) { 
+				if(bag.get_cardNo()==100)
+				{
+					
+				}
+				else if(y>=IF_form.get_canvas().getHeight()*675/1000) //if down center X  
 					y=IF_form.get_canvas().getHeight()*675/1000;
 			}
 			//left blocks collision
 			else if(markY=="c" && markX=="l") {
-				if(x<=IF_form.get_canvas().getWidth()*145/500) //if center Y left
+				if(x<=IF_form.get_canvas().getWidth()*145/500) {//if center Y left
 					x=IF_form.get_canvas().getWidth()*145/500;
+				Assets.Messages[1]=true;	
+				}
+				else 		
+					Assets.Messages[1]=false;
 			}
+			
 			//right blocks collision
-			else if(markY=="c" && markX=="r") {
+			else if(markY=="c" && markX=="r")
+			{
 				if(x>=IF_form.get_canvas().getWidth()*68/100) //if center Y right
+			
+				{
 					x=IF_form.get_canvas().getWidth()*68/100;
+					Assets.Messages[2]=true;
+				}
+				else 
+					Assets.Messages[2]=false;
 			}
 
-		if(bag.isEmpty()) {			
-			//up blocks collision
-			if(markY=="u"&& markX=="c") {
-				if(y>=IF_form.get_canvas().getHeight()*22/100) //if up center X
-					y=IF_form.get_canvas().getHeight()*22/100;
+			if(bag.isEmpty()) {
+				//up blocks collision
+				if(markY=="u"&& markX=="c") {
+					
+					if(y>=IF_form.get_canvas().getHeight()*22/100) //if up center X
+					{
+						Assets.Messages[0]=true;
+						y=IF_form.get_canvas().getHeight()*22/100;
+					}
+					else 
+						Assets.Messages[0]=false;
+					
+				}
 			}
-		}
+			else
+				Assets.Messages[0]=false;
+		/*================================================== collision of Blocks==================================*/
+	
+		
+	/*================================================== collision of Blocks==================================*/
+
+		
+	/*================================================== Movement ==================================*/
+
 		//move up
 		if(game.getKeyManager().up){
 			if(y<=0)
@@ -170,10 +258,13 @@ public class Player extends Creature{
 			else
 				x+=3;
 		}
+	/*================================================== Movement ==================================*/
+
+		
 	} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-	}
+	}//tick brackets
 
 	/**to draw the player*/
 	@Override

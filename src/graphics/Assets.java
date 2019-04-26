@@ -1,16 +1,33 @@
 package graphics;
 
 import java.awt.image.BufferedImage;
+import java.util.Arrays;
 
 import forms.GameForm;
 
 public class Assets
 {
 	public static BufferedImage player,H_block,V_block,bg;
+	// pictures of the pop up messages
+	public static BufferedImage msgs [];
+	// pictures of the cards in the bag
+	public static BufferedImage cards [];
+	// pictures of the VIP cards with the IDs in the bag 
+	public static BufferedImage VIPID [];
+	// pictures of the Ordinary cards with the IDs in the bag
+	public static BufferedImage OrdinaryID [];
+	// array of boolean of the pop up messages (shown or not shown )
+	static public  boolean Messages[];
+
 	public static void init()
 	{
-		SpriteSheet H_blockLoader,V_blockLoader,	sheet =new SpriteSheet(ImageLoader.loadImage("/textures/spritesheet.png"));   //the sprite sheet picture 
-		
+		SpriteSheet H_blockLoader,V_blockLoader,sheet1=new SpriteSheet(ImageLoader.loadImage("/textures/msgs.png")),	sheet =new SpriteSheet(ImageLoader.loadImage("/textures/spritesheet.png"));   //the sprite sheet picture 
+		msgs  = new BufferedImage[10]; // 10 Different messages 
+		cards  = new BufferedImage[2]; // 2 cards VIP or Ordinary
+		VIPID  = new BufferedImage[3]; // 3 VIP cards 70,100,150
+		OrdinaryID  = new BufferedImage[10]; // 3 Ordinary cards 70,100,150
+		Messages= new boolean[10];
+		Arrays.fill(Messages, Boolean.FALSE);// all messages are not shown at start
 		player=sheet.crop(250, 0,50, 50);
 		 H_blockLoader=new SpriteSheet(ImageLoader.loadImage("/textures/el 7agz.png"));
 		 H_block=H_blockLoader.crop(0, 0,73, 10);
@@ -18,7 +35,14 @@ public class Assets
 		 V_blockLoader=new SpriteSheet(ImageLoader.loadImage("/textures/el 7agz V.png"));
 		 V_block=V_blockLoader.crop(0, 0, 10, 73);
 		 
-		 bg =ImageLoader.loadImage("/textures/IF_Design.png");		
+		 bg =ImageLoader.loadImage("/textures/IF_Design.png");
+		 // loop to cut the 10 messages from the Spreadsheet
+		 for(int i=0,x=0;i<10;i++)
+		 {
+			 msgs[i] =sheet1.crop(x, 0, 262, 182);
+			 x+=262;
+		 }
+		 
 		
 	}
 

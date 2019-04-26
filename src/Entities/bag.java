@@ -6,17 +6,20 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import forms.IF_form;
+import javafx.util.Pair;
 
 public class bag {
 
 	private Player g;
-	private String card="";
-	
+	private String cardName="";
+	private int cardNo=0;
 	
 	public boolean isEmpty() {
-		return card=="";
+		return cardName=="";
 	}
-	
+	public boolean isNoEmpty() {
+		return cardNo==0;
+	}
 	public void addComponants() {
 		if(g.game.get_panel().getComponentCount()==0) {
 			JButton b=new JButton("open");
@@ -31,10 +34,18 @@ public class bag {
 	
 	public void set_card(String card)
 	{
-		this.card=card;
+		this.cardName=card;
+	}
+	public void set_cardNo(int cardNo)
+	{
+		this.cardNo=cardNo;
 	}
 	public String get_card() 
 	{
-		return card;
+		return cardName;
+	}
+	public int get_cardNo() 
+	{
+		return cardNo;
 	}
 }
