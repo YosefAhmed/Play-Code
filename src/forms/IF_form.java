@@ -72,21 +72,11 @@ public class IF_form extends GameForm {
 
 		for(int i=0;i<10;i++)
 		{
-			if(Assets.Messages[0])
+			if(Assets.Messages[i])
 			{
-				g.drawImage(Assets.msgs[0],canvas.getWidth()*29/45, canvas.getHeight()*27/500, canvas.getWidth()*2/10,canvas.getHeight()*2/10 ,null);
+				g.drawImage(Assets.msgs[i],canvas.getWidth()*29/45, canvas.getHeight()*27/500, canvas.getWidth()*2/10,canvas.getHeight()*2/10 ,null);
 				
 			}
-		}
-		if(Assets.Messages[1])
-		{
-			g.drawImage(Assets.msgs[1],canvas.getWidth()*29/45, canvas.getHeight()*27/500, canvas.getWidth()*2/10,canvas.getHeight()*2/10 ,null);
-			
-		}
-		if(Assets.Messages[2])
-		{
-			g.drawImage(Assets.msgs[2],canvas.getWidth()*29/45, canvas.getHeight()*27/500, canvas.getWidth()*2/10,canvas.getHeight()*2/10 ,null);
-			
 		}
 		
 		if(state.getState()!=null)

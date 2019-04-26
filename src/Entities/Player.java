@@ -2,6 +2,7 @@ package Entities;
 
 import java.awt.*;
 import java.io.IOException;
+import java.util.Random;
 
 import javax.swing.JButton;
 
@@ -13,6 +14,8 @@ import graphics.Assets;
 public class Player extends Creature{
 
 	public static IF_form game;
+	Random rand = new Random();
+
 
 	private bag bag =new bag();
 	/**the constructor 
@@ -73,8 +76,20 @@ public class Player extends Creature{
 			{
 				if(y>=IF_form.get_canvas().getHeight()*10/200) 
 				{
-					bag.set_card("VIP");
-					bag.addComponants();
+					if(bag.isEmpty())
+					{
+						// generate a random card VIP or Ordinary
+						int index = rand.nextInt((1 - 0) + 1) + 0; 
+						if (index ==0)
+						{
+							bag.set_card("VIP");
+						}
+						else 
+							bag.set_card("Ordinary");
+						
+						bag.addComponants();
+					}
+						
 				}
 				x=IF_form.get_canvas().getWidth()*83/200;
 			}
@@ -167,24 +182,57 @@ public class Player extends Creature{
 	/*================================================== collision of down walk sides==================================*/
 
 			System.out.println(markY+" "+markX+" "+down_blocks_markX);//just for testing :)
+			System.out.println(bag.get_card());//just for testing :)
 
 			
 	/*================================================== collision of Blocks==================================*/
 			
 			//down blocks collision
-			if(markY=="d"&& (markX=="c" ||markX=="r" )) { 
-				if(bag.get_cardNo()==100)
+			if(markY=="d"&& (markX=="c" ||markX=="r" )) 
+			{
+							
+				if(y>=IF_form.get_canvas().getHeight()*675/1000) //if down center X  
 				{
-					
+					if(x<IF_form.get_canvas().getWidth()*395/1000)
+					{
+						if(bag.get_card()=="VIP")
+							Assets.Messages[4]=true;
+						else 
+							Assets.Messages[7]=true;
+						y=IF_form.get_canvas().getHeight()*675/1000;
+					}
+					else if(x>IF_form.get_canvas().getWidth()*275/500)
+					{
+						if(bag.get_card()=="VIP")
+							Assets.Messages[6]=true;
+						else 
+							Assets.Messages[9]=true;
+						y=IF_form.get_canvas().getHeight()*675/1000;
+					}
+					else
+					{
+						if(bag.get_card()=="VIP")
+							Assets.Messages[5]=true;
+						else 
+							Assets.Messages[8]=true;
+						y=IF_form.get_canvas().getHeight()*675/1000;
+					}
+						
 				}
-				else if(y>=IF_form.get_canvas().getHeight()*675/1000) //if down center X  
-					y=IF_form.get_canvas().getHeight()*675/1000;
+				else 
+				{
+					for(int i=3;i<10;i++)
+						Assets.Messages[i]=false;
+				}
+					
 			}
 			//left blocks collision
-			else if(markY=="c" && markX=="l") {
-				if(x<=IF_form.get_canvas().getWidth()*145/500) {//if center Y left
+			else if(markY=="c" && markX=="l")
+			{
+				if(x<=IF_form.get_canvas().getWidth()*145/500 && bag.get_card()!="Ordinary") {//if center Y left
+					
 					x=IF_form.get_canvas().getWidth()*145/500;
-				Assets.Messages[1]=true;	
+					Assets.Messages[1]=true;	
 				}
 				else 		
 					Assets.Messages[1]=false;
@@ -193,11 +241,10 @@ public class Player extends Creature{
 			//right blocks collision
 			else if(markY=="c" && markX=="r")
 			{
-				if(x>=IF_form.get_canvas().getWidth()*68/100) //if center Y right
-			
+				if(x>=IF_form.get_canvas().getWidth()*68/100 && bag.get_card()!="VIP") //if center Y right			
 				{
 					x=IF_form.get_canvas().getWidth()*68/100;
-					Assets.Messages[2]=true;
+						Assets.Messages[2]=true;
 				}
 				else 
 					Assets.Messages[2]=false;
