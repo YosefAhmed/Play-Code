@@ -20,7 +20,8 @@ public class bag {
 	public boolean isNoEmpty() {
 		return cardNo==0;
 	}
-	public void addComponants() {
+	
+	/*public void addComponants() {
 		if(g.game.get_panel().getComponentCount()==0) {
 			JButton b=new JButton("open");
 			g.game.get_panel().add(b);
@@ -31,7 +32,7 @@ public class bag {
 		else
 			g.game.get_panel().setBackground(Color.WHITE);
 	}
-	
+	*/
 	public void set_card(String card)
 	{
 		this.cardName=card;

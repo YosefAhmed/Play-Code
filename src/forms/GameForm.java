@@ -13,7 +13,7 @@ import javax.swing.JFrame;
 import com.sun.javafx.geom.Rectangle;
 import com.sun.javafx.geom.Shape;
 
-import States.GameState;
+import States.IF_state;
 import States.state;
 import graphics.Assets;
 import graphics.ImageLoader;
@@ -38,14 +38,16 @@ public abstract class GameForm implements Runnable{
 	private boolean running=false;
 	
 	public JFrame frmGame;
+	protected static  Canvas canvas1 = new Canvas();
 	protected static  Canvas canvas = new Canvas();
-	protected static Panel panel = new Panel();
+	
 
 	//To allow drawing
 	protected BufferStrategy bs;
-	
+	protected BufferStrategy bs1;
 	//g is like a paint brush
 	public Graphics g;
+	public Graphics g1;
 	
 	private SpriteSheet sheet;				
 	//state
@@ -81,7 +83,8 @@ public abstract class GameForm implements Runnable{
 		frmGame.getContentPane().setLayout(gridBagLayout);
 		frmGame.setResizable(false);
 		
-		//panel
+		/*
+		 //panel
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.fill = GridBagConstraints.BOTH;
 		gbc_panel.insets = new Insets(0, 0, 0, 5);
@@ -93,7 +96,16 @@ public abstract class GameForm implements Runnable{
 		panel.setSize(frmGame.getWidth()*1/5, frmGame.getHeight());
 		frmGame.getContentPane().add(panel, gbc_panel);
 		
-		
+		*/
+		//canvas1
+				canvas1.setSize(frmGame.getWidth()*1/5, frmGame.getHeight());
+				GridBagConstraints gbc_canvas1 = new GridBagConstraints();
+				gbc_canvas1.fill = GridBagConstraints.BOTH;
+				gbc_canvas1.gridx = 0;
+				gbc_canvas1.gridy = 0;
+				canvas1.setFocusable(false);
+				canvas1.setBackground(Color.GREEN);
+				frmGame.getContentPane().add(canvas1, gbc_canvas1);
 		
 		//canvas
 		canvas.setSize(frmGame.getWidth()*4/5, frmGame.getHeight());
@@ -107,7 +119,6 @@ public abstract class GameForm implements Runnable{
 
 	}
 	
-	protected abstract Panel get_panel();
 
 	protected abstract void init();
 	

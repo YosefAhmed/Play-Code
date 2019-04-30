@@ -7,7 +7,7 @@ import forms.GameForm;
 
 public class Assets
 {
-	public static BufferedImage player,H_block,V_block,bg;
+	public static BufferedImage player,H_block[],V_block[],bg;
 	// pictures of the pop up messages
 	public static BufferedImage msgs [];
 	// pictures of the cards in the bag
@@ -30,10 +30,16 @@ public class Assets
 		Arrays.fill(Messages, Boolean.FALSE);// all messages are not shown at start
 		player=sheet.crop(250, 0,50, 50);
 		 H_blockLoader=new SpriteSheet(ImageLoader.loadImage("/textures/el 7agz.png"));
-		 H_block=H_blockLoader.crop(0, 0,73, 10);
+		 H_block= new BufferedImage[3];
+		 H_block[0]=H_blockLoader.crop(0, 0,170, 10);
+		 H_block[1]=H_blockLoader.crop(0, 0,70, 10);
+		 H_block[2]=H_blockLoader.crop(0, 0,10, 10);
+
 		 
 		 V_blockLoader=new SpriteSheet(ImageLoader.loadImage("/textures/el 7agz V.png"));
-		 V_block=V_blockLoader.crop(0, 0, 10, 73);
+		 V_block= new BufferedImage[3];
+		 V_block[0]=V_blockLoader.crop(0, 0, 10, 73);
+		 
 		 
 		 bg =ImageLoader.loadImage("/textures/IF_Design.png");
 		 // loop to cut the 10 messages from the Spreadsheet

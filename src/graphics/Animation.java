@@ -7,11 +7,13 @@ public class Animation
 	private int speed , index;
 	private long lastTime, timer;
 	private BufferedImage[] frames;
+	private int NoFrames;
 	
-	public Animation(int speed, BufferedImage[] frames)
+	public Animation(int speed, BufferedImage[] frames, int NoFrames)
 	{
 		this.frames = frames;
 		this.speed = speed;
+		this.NoFrames= NoFrames-1;
 		index=0;
 		timer=0;
 		lastTime = System.currentTimeMillis();
@@ -27,16 +29,12 @@ public class Animation
 			index++;
 			timer =0;
 			if(index>=frames.length)
-				index=0;
+				index= NoFrames;
 		}
 	}
 	
-	public BufferedImage getCurrentAnimationFrame()
-	{
-		return this.getCurrentFrame();
-	}
 	
-	private BufferedImage getCurrentFrame()
+	public BufferedImage getCurrentFrame()
 	{
 		return frames[index];
 	}

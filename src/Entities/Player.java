@@ -8,16 +8,24 @@ import javax.swing.JButton;
 
 import forms.GameForm;
 import forms.IF_form;
+import graphics.Animation;
 import graphics.Assets;
 
 /**This class responsible for moving the player based on the key input */
 public class Player extends Creature{
 
+
+
 	public static IF_form game;
 	Random rand = new Random();
-
-
-	private bag bag =new bag();
+	// Animation 
+		public static Animation topBlock;
+		public static Animation rightBlock;
+		public static Animation leftBlock;
+		public static Animation rightDownBlock;
+		public static Animation centerDownBlock;
+		public static Animation leftDownBlock;
+	public static bag bag =new bag();
 	/**the constructor 
 	 * @param game : GameForm
 	 * @param x :float for X coordinate
@@ -26,6 +34,7 @@ public class Player extends Creature{
 	public Player(IF_form game,float x, float y) {
 		super(x, y);
 		Player.game=game;
+		topBlock = new Animation(650,Assets.H_block,3);
 	}
 	
 	/**mark :char to mark the Y position
@@ -36,10 +45,13 @@ public class Player extends Creature{
 	
 	/**represents every tick */
 	@Override
-	public void tick() {		
+	public void tick() 
+	{
+		// Animation 
+		topBlock.tick();
 	try {	
-		System.out.println("X "+x+" width "+IF_form.get_canvas().getWidth());
-		System.out.println("Y "+y+" height "+IF_form.get_canvas().getHeight());
+	//	System.out.println("X "+x+" width "+IF_form.get_canvas().getWidth());
+	//	System.out.println("Y "+y+" height "+IF_form.get_canvas().getHeight());
 		markX="c";
 		
 		//Mark Y
@@ -87,7 +99,6 @@ public class Player extends Creature{
 						else 
 							bag.set_card("Ordinary");
 						
-						bag.addComponants();
 					}
 						
 				}
@@ -181,8 +192,8 @@ public class Player extends Creature{
 		
 	/*================================================== collision of down walk sides==================================*/
 
-			System.out.println(markY+" "+markX+" "+down_blocks_markX);//just for testing :)
-			System.out.println(bag.get_card());//just for testing :)
+		//	System.out.println(markY+" "+markX+" "+down_blocks_markX);//just for testing :)
+		//	System.out.println(bag.get_card());//just for testing :)
 
 			
 	/*================================================== collision of Blocks==================================*/
@@ -315,9 +326,9 @@ public class Player extends Creature{
 
 	/**to draw the player*/
 	@Override
-	public void render(Graphics g) {
+	public void render(Graphics g) 
+	{
 		g.drawImage(Assets.player, (int)x, (int)y,IF_form.get_canvas().getWidth()*6/100,IF_form.get_canvas().getHeight()*19/400, null);
-		
 	}
 	
 	
