@@ -7,6 +7,7 @@ import forms.GameForm;
 
 public class Assets
 {
+	
 	public static BufferedImage player,H_block[],V_block[],bg;
 	// pictures of the pop up messages
 	public static BufferedImage msgs [];
@@ -18,6 +19,7 @@ public class Assets
 	public static BufferedImage OrdinaryID [];
 	// array of boolean of the pop up messages (shown or not shown )
 	static public  boolean Messages[];
+	public static BufferedImage CodePhaseData_lvl2[];
 
 	public static void init()
 	{
@@ -69,6 +71,31 @@ public class Assets
 			 OrdinaryID[i] =cards.crop(x, 0, 262, 182);
 			 x+=262;
 		 }
+		 
+		 CodePhaseData_lvl2 = new BufferedImage[20];
+		 CodePhaseData_lvl2[0]= ImageLoader.loadImage("/textures/Level2_IF/start.png");
+		 CodePhaseData_lvl2[1]= ImageLoader.loadImage("/textures/Level2_IF/1.png");
+		 CodePhaseData_lvl2[2]= ImageLoader.loadImage("/textures/Level2_IF/2.png");
+		 CodePhaseData_lvl2[3]= ImageLoader.loadImage("/textures/Level2_IF/3.png");
+		 CodePhaseData_lvl2[4]= ImageLoader.loadImage("/textures/Level2_IF/4.png");
+		 CodePhaseData_lvl2[5]= ImageLoader.loadImage("/textures/Level2_IF/5.png");
+		 CodePhaseData_lvl2[6]= ImageLoader.loadImage("/textures/Level2_IF/6.png");
+		 CodePhaseData_lvl2[7]= ImageLoader.loadImage("/textures/Level2_IF/7.png");
+		 CodePhaseData_lvl2[8]= ImageLoader.loadImage("/textures/Level2_IF/8.png");
+		 CodePhaseData_lvl2[9]= ImageLoader.loadImage("/textures/Level2_IF/9.png");
+		 CodePhaseData_lvl2[10]= ImageLoader.loadImage("/textures/Level2_IF/10.png");
+		 CodePhaseData_lvl2[11]= ImageLoader.loadImage("/textures/Level2_IF/11.png");
+		 CodePhaseData_lvl2[12]= ImageLoader.loadImage("/textures/Level2_IF/12.png");
+		 CodePhaseData_lvl2[13]= ImageLoader.loadImage("/textures/Level2_IF/13.png");
+		 CodePhaseData_lvl2[14]= ImageLoader.loadImage("/textures/Level2_IF/14.png");
+		 CodePhaseData_lvl2[15]= ImageLoader.loadImage("/textures/Level2_IF/15.png");
+		 CodePhaseData_lvl2[16]= ImageLoader.loadImage("/textures/Level2_IF/16.png");
+		 CodePhaseData_lvl2[17]= ImageLoader.loadImage("/textures/Level2_IF/17.png");
+		 CodePhaseData_lvl2[18]= ImageLoader.loadImage("/textures/Level2_IF/18.png");
+		 CodePhaseData_lvl2[19]= ImageLoader.loadImage("/textures/Level2_IF/end.png");
+
+		 
+
 	}
 
 }

@@ -1,53 +1,35 @@
 package forms;
 
+import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferStrategy;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import graphics.Assets;
 
 public class Code_Form extends JFrame {
 
 	private JLabel pic;
 	private JButton NextBt, BackBt;
     private static int CurrentImage = 1;    
-    
-    //Images Path In Array
-    String[] list = {
-                      "C:\\Users\\Mohammed\\eclipse-workspace\\PlayCodeGame\\res\\textures\\Level2_IF\\Start.png",//0
-                      "C:\\Users\\Mohammed\\eclipse-workspace\\PlayCodeGame\\res\\textures\\Level2_IF\\1.png",//1
-                      "C:\\Users\\Mohammed\\eclipse-workspace\\PlayCodeGame\\res\\textures\\Level2_IF\\2.png",//2
-                      "C:\\Users\\Mohammed\\eclipse-workspace\\PlayCodeGame\\res\\textures\\Level2_IF\\3.png",//3
-                      "C:\\Users\\Mohammed\\eclipse-workspace\\PlayCodeGame\\res\\textures\\Level2_IF\\4.png",//4
-                      "C:\\Users\\Mohammed\\eclipse-workspace\\PlayCodeGame\\res\\textures\\Level2_IF\\5.png",//5
-                      "C:\\Users\\Mohammed\\eclipse-workspace\\PlayCodeGame\\res\\textures\\Level2_IF\\6.png",//6
-                      "C:\\Users\\Mohammed\\eclipse-workspace\\PlayCodeGame\\res\\textures\\Level2_IF\\7.png",//7
-                      "C:\\Users\\Mohammed\\eclipse-workspace\\PlayCodeGame\\res\\textures\\Level2_IF\\8.png",//8
-                      "C:\\Users\\Mohammed\\eclipse-workspace\\PlayCodeGame\\res\\textures\\Level2_IF\\9.png",//9
-                      "C:\\Users\\Mohammed\\eclipse-workspace\\PlayCodeGame\\res\\textures\\Level2_IF\\10.png",//10
-                      "C:\\Users\\Mohammed\\eclipse-workspace\\PlayCodeGame\\res\\textures\\Level2_IF\\11.png",//11
-                      "C:\\Users\\Mohammed\\eclipse-workspace\\PlayCodeGame\\res\\textures\\Level2_IF\\12.png",//12
-                      "C:\\Users\\Mohammed\\eclipse-workspace\\PlayCodeGame\\res\\textures\\Level2_IF\\13.png",//13
-                      "C:\\Users\\Mohammed\\eclipse-workspace\\PlayCodeGame\\res\\textures\\Level2_IF\\14.png",//14
-                      "C:\\Users\\Mohammed\\eclipse-workspace\\PlayCodeGame\\res\\textures\\Level2_IF\\15.png",//15
-                      "C:\\Users\\Mohammed\\eclipse-workspace\\PlayCodeGame\\res\\textures\\Level2_IF\\16.png",//16
-                      "C:\\Users\\Mohammed\\eclipse-workspace\\PlayCodeGame\\res\\textures\\Level2_IF\\17.png",//17
-                      "C:\\Users\\Mohammed\\eclipse-workspace\\PlayCodeGame\\res\\textures\\Level2_IF\\18.png",//18
-                      "C:\\Users\\Mohammed\\eclipse-workspace\\PlayCodeGame\\res\\textures\\Level2_IF\\end.png"//19
-
-                    };
-	
+           	
 	public Code_Form() {
 			
 		pic = new JLabel();
         pic.setBounds(220,50,560,410);
-		
-        DisplayImg(0); // Displaying Start Image
+        
+		DisplayImg(0);
         
         //Next Button setUp
         NextBt = new JButton();
@@ -64,7 +46,7 @@ public class Code_Form extends JFrame {
 		        DisplayImg(CurrentImage);
 				CurrentImage += 1;
                 
-				if(CurrentImage == list.length )
+				if(CurrentImage == Assets.CodePhaseData_lvl2.length )
                 {
 					NextBt.setVisible(false);
                 }
@@ -110,7 +92,7 @@ public class Code_Form extends JFrame {
     }
     
     public void DisplayImg(int i){
-        ImageIcon icon = new ImageIcon(list[i]);
+        ImageIcon icon = new ImageIcon(Assets.CodePhaseData_lvl2[i]);
         Image img = icon.getImage();
         Image newImg = img.getScaledInstance(pic.getWidth(), pic.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon newImc = new ImageIcon(newImg);

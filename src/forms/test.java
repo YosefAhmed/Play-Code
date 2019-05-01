@@ -35,6 +35,9 @@ public class test extends GameForm {
 		move.tick();
 	}
 
+	int preX=0,preY=0,width=50,hight=50;
+	boolean inCell=false;
+
 	@Override
 	protected void render() {
 		bs1 = canvas1.getBufferStrategy();
@@ -57,9 +60,38 @@ public class test extends GameForm {
 		g1.clearRect(0, 0, canvas1.getWidth(), canvas1.getHeight());	
 		
 		//draw here
-		g.drawImage(Assets.player,move.x-35,move.y-35,null);
 		
-			
+		//test drawings
+		g.drawRect(400, 300, 400, 400);
+		//if i clicked on the shape
+		
+		if(move.state==0 && ((move.x <= 50 && move.x !=0)&&(move.y<=50 && move.y !=0))) {
+		  if(!inCell) {
+			move.state=1;
+			width=70;
+			hight=70;
+			move.pressDown=0;
+		  }
+		}
+		//if i released on the right place
+		else if(move.state==1 && (move.x >= 400 && move.y>= 300)) {
+			inCell=true;
+			move.state=0;
+			preX=move.x;
+			preY=move.y;
+			width=50;
+			hight=50;
+		}
+		//if i released on wrong place
+		else if( move.pressed) {
+			move.state=0;
+			width=50;
+			hight=50;
+		}
+		g.drawImage(Assets.player,preX,preY,width,hight,null);
+		
+	 //	System.out.println(move.state+"  "+preX+"  "+preY+"  "+move.x+"  "+move.y);
+
 			
 			
 		//End Drawing
