@@ -3,23 +3,28 @@ package forms;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import Input.KeyManager;
 
+import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import com.sun.javafx.geom.Rectangle;
 import com.sun.javafx.geom.Shape;
 
-import States.IF_state;
 import States.state;
 import graphics.Assets;
 import graphics.ImageLoader;
 import graphics.SpriteSheet;
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Canvas;
 import java.awt.Color;
@@ -30,17 +35,19 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
-public abstract class GameForm implements Runnable{
+public abstract class GameForm implements Runnable {
 
 	//????????
 	private Thread thread;
 	//to control the loop in run()
 	private boolean running=false;
 	
+	//containers
 	public JFrame frmGame;
-	protected static  Canvas canvas1 = new Canvas();
-	protected static  Canvas canvas = new Canvas();
-	
+	protected static  Canvas canvas1 = new Canvas(); //the bag
+	protected static  Canvas canvas = new Canvas(); //the game place
+	protected static JPanel panel =new JPanel(); //the panel contains the bag
+
 
 	//To allow drawing
 	protected BufferStrategy bs;
@@ -49,18 +56,28 @@ public abstract class GameForm implements Runnable{
 	public Graphics g;
 	public Graphics g1;
 	
+	//for assets
 	private SpriteSheet sheet;				
 	//state
 	protected state gamestate;
-			
 
-	
+	//Back Button
+	JButton back_btn=new JButton("Back");
+
 	
 	
 	/**
 	 * Create the application.
 	 */
 	public GameForm() {
+		//Back button action
+		 back_btn.addActionListener(new ActionListener()
+		    {
+		        public void actionPerformed(ActionEvent e){   
+		   	//---------------------****write the Back button Action here****-----------
+		        	System.exit(0);
+		    }       
+		    });
 	}
 
 	/**
@@ -83,30 +100,36 @@ public abstract class GameForm implements Runnable{
 		frmGame.getContentPane().setLayout(gridBagLayout);
 		frmGame.setResizable(false);
 		
-		/*
-		 //panel
-		GridBagConstraints gbc_panel = new GridBagConstraints();
-		gbc_panel.fill = GridBagConstraints.BOTH;
-		gbc_panel.insets = new Insets(0, 0, 0, 5);
-		gbc_panel.gridx = 0;
-		gbc_panel.gridy = 0;
-		
-		//panel.setLayout(new GridLayout(0, 1, 1, 1));
-		panel.setLayout(new FlowLayout(FlowLayout.LEFT));
-		panel.setSize(frmGame.getWidth()*1/5, frmGame.getHeight());
-		frmGame.getContentPane().add(panel, gbc_panel);
-		
-		*/
-		//canvas1
+		//panel
+				GridBagConstraints gbc_panel = new GridBagConstraints();
+				gbc_panel.fill = GridBagConstraints.BOTH;
+				gbc_panel.insets = new Insets(0, 0, 0, 5);
+				gbc_panel.gridx = 0;
+				gbc_panel.gridy = 0;
+				panel.setLayout(new FlowLayout(FlowLayout.CENTER));
 				canvas1.setSize(frmGame.getWidth()*1/5, frmGame.getHeight());
+				frmGame.getContentPane().add(panel, gbc_panel);
+				panel.setBackground(Color.white);
+		
+		//canvas1
+				canvas1.setSize(frmGame.getWidth()*1/5, frmGame.getHeight()*2/3);
 				GridBagConstraints gbc_canvas1 = new GridBagConstraints();
-				gbc_canvas1.fill = GridBagConstraints.BOTH;
+				gbc_canvas1.anchor = GridBagConstraints.LINE_START;
 				gbc_canvas1.gridx = 0;
 				gbc_canvas1.gridy = 0;
 				canvas1.setFocusable(false);
-				canvas1.setBackground(Color.GREEN);
-				frmGame.getContentPane().add(canvas1, gbc_canvas1);
-		
+				canvas1.setBackground(Color.white);
+				panel.add(canvas1, gbc_canvas1);
+
+		      //adding the Back button to the panel below canvas1
+                back_btn.setPreferredSize(new Dimension(canvas1.getWidth()*2/3,canvas1.getHeight()*1/9));
+				back_btn.setBackground(Color.BLUE);
+				back_btn.setForeground(Color.WHITE);
+				Font myFont = new Font ("Courier New", 1, 20);
+				back_btn.setFont(myFont);
+				panel.add(back_btn);
+			    panel.add(Box.createRigidArea(new Dimension(-10, 150)));
+
 		//canvas
 		canvas.setSize(frmGame.getWidth()*4/5, frmGame.getHeight());
 		GridBagConstraints gbc_canvas = new GridBagConstraints();

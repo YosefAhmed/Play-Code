@@ -31,7 +31,7 @@ public class Main_Form extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		try {
-			 image  = new JLabel(new ImageIcon(ImageIO.read(new File("D:/Projects/eclipse projects/Play_Cod/rec/textures/background.png"))));
+			 image  = new JLabel(new ImageIcon(ImageIO.read(new File("E:\\Play-Code-master.zip_expanded\\Play-Code-master\\rec\\textures\\background.png"))));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

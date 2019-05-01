@@ -17,9 +17,7 @@ public class bag {
 	public boolean isEmpty() {
 		return cardName=="";
 	}
-	public boolean isNoEmpty() {
-		return cardNo==0;
-	}
+
 	
 	/*public void addComponants() {
 		if(g.game.get_panel().getComponentCount()==0) {
