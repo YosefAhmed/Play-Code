@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.text.DecimalFormat;
 
+import javax.swing.JOptionPane;
+
 import Entities.Player;
 import Input.MouseManager;
 //import States.GameState;
@@ -17,7 +19,7 @@ public class Var_form extends GameForm{
 	private int preX=0,preY=0,width=50,hight=50;
 	private boolean inCell=false;
 	
-	Locations loc=new Locations();
+	Locations loc=new Locations(this);
 	
 	public  Var_form() {
 		move=new MouseManager();
@@ -61,17 +63,46 @@ public class Var_form extends GameForm{
 		g1.clearRect(0, 0, canvas1.getWidth(), canvas1.getHeight());
 		//Draw Here
 		
+		//drawing background
 		g.drawImage(Assets.bg1, 0, 0,canvas.getWidth(),canvas.getHeight(), null);
-		g.drawImage(Assets.variables[0],loc.relateToCanvas(28f, this, 'x'),loc.relateToCanvas(478, this, 'y'), null);
-		g.drawImage(Assets.variables[1],loc.relateToCanvas(338f, this, 'x'),loc.relateToCanvas(423, this, 'y'), null);
-		g.drawImage(Assets.variables[2],loc.relateToCanvas(100f, this, 'x'),loc.relateToCanvas(491f, this, 'y'), null);
-		g.drawImage(Assets.variables[3],loc.relateToCanvas(196f, this, 'x'),loc.relateToCanvas(412f, this, 'y'), null);
-		g.drawImage(Assets.variables[4],loc.relateToCanvas(373f, this, 'x'),loc.relateToCanvas(442f, this, 'y'), null);
-		g.drawImage(Assets.variables[5],loc.relateToCanvas(417f, this, 'x'),loc.relateToCanvas(350f, this, 'y'), null);
-		g.drawImage(Assets.variables[6],loc.relateToCanvas(108f, this, 'x'),loc.relateToCanvas(415f, this, 'y'), null);
-		g.drawImage(Assets.variables[7],loc.relateToCanvas(400f, this, 'x'),loc.relateToCanvas(498f, this, 'y'), null);
+		
+		//drawing numbers and strings
+		g.drawImage(Assets.variables[0],loc.relateToCanvas(22, 'x'),loc.relateToCanvas(400, 'y'),
+				loc.relateToCanvas(65, 'x'),loc.relateToCanvas(50, 'y'), null);
+		
+		g.drawImage(Assets.variables[1],loc.relateToCanvas(338, 'x'),loc.relateToCanvas(423, 'y'),
+				loc.relateToCanvas(79, 'x'),loc.relateToCanvas(81, 'y'), null);
+		
+		g.drawImage(Assets.variables[2],loc.relateToCanvas(100, 'x'),loc.relateToCanvas(491, 'y'),
+				loc.relateToCanvas(79, 'x'),loc.relateToCanvas(81, 'y'), null);
+		
+		g.drawImage(Assets.variables[3],loc.relateToCanvas(196, 'x'),loc.relateToCanvas(412, 'y'),
+				loc.relateToCanvas(79, 'x'),loc.relateToCanvas(81, 'y'), null);
+		
+		g.drawImage(Assets.variables[4],loc.relateToCanvas(20, 'x'),loc.relateToCanvas(450, 'y'),
+				loc.relateToCanvas(70, 'x'),loc.relateToCanvas(81, 'y'), null);
+		
+		g.drawImage(Assets.variables[5],loc.relateToCanvas(417, 'x'),loc.relateToCanvas(360, 'y'),
+				loc.relateToCanvas(79, 'x'),loc.relateToCanvas(81, 'y'), null);
+		
+		g.drawImage(Assets.variables[6],loc.relateToCanvas(108, 'x'),loc.relateToCanvas(415, 'y'),
+				loc.relateToCanvas(79, 'x'),loc.relateToCanvas(81, 'y'), null);
+		
+		g.drawImage(Assets.variables[7],loc.relateToCanvas(322, 'x'),loc.relateToCanvas(478, 'y'),
+				loc.relateToCanvas(79, 'x'),loc.relateToCanvas(81, 'y'), null);
 		
 		//if i clicked on the shape
+		if(loc.checkLocation(move.x, move.y)=='i') {
+			JOptionPane.showMessageDialog(null, "integer");
+		}
+		else if(loc.checkLocation(move.x, move.y)=='f') {
+			JOptionPane.showMessageDialog(null, "float");
+
+		}
+		else if(loc.checkLocation(move.x, move.y)=='s') {
+			JOptionPane.showMessageDialog(null, "string");
+
+		}
 		
 		if(move.state==0 && ((move.x <= 50 && move.x !=0)&&(move.y<=50 && move.y !=0))) {
 		  if(!inCell) {
@@ -103,6 +134,7 @@ public class Var_form extends GameForm{
 		
 	//	g.drawImage(Assets.variables[0], x, y, observer)
 		//End Drawing
+		move.x = move.y = 0;
 		bs.show();
 		bs1.show();
 		g.dispose(); 		

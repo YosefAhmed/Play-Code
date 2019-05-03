@@ -11,7 +11,7 @@ public class MouseManager implements MouseListener, MouseMotionListener{
 
 		public void tick() {
 		 	//System.out.println(draged+"  "+ pressed);
-
+			
 		}
 		
 		@Override
@@ -35,7 +35,6 @@ public class MouseManager implements MouseListener, MouseMotionListener{
 			x=e.getX();
 			y=e.getY();
 			System.out.println(e.getX()+"  "+e.getY());
-
 		}
 
 		@Override
@@ -66,7 +65,7 @@ public class MouseManager implements MouseListener, MouseMotionListener{
 		@Override
 		public void mouseReleased(MouseEvent e) {
 			pressed=false;
-		
+
 		}
 
 	
