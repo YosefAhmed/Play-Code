@@ -6,20 +6,13 @@ import java.awt.event.MouseMotionListener;
 public class MouseManager implements MouseListener, MouseMotionListener{
 
 		public int x,y,state=0;
-		
 		public boolean pressed;
 
-		public void tick() {
-		 	//System.out.println(draged+"  "+ pressed);
-			
+		public void tick() {			
 		}
 		
 		@Override
 		public void mouseDragged(MouseEvent e) {
-
-			//e.getComponent().setLocation((e.getX()+e.getComponent().getX())-x,(e.getY()+e.getComponent().getY())-y);
-			//System.out.println(e.getComponent().getX()+"  "+e.getComponent().getY());
-
 		}
 
 		@Override
@@ -30,8 +23,6 @@ public class MouseManager implements MouseListener, MouseMotionListener{
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			//System.out.println("clicked");
-		//	pressed=true;
 			x=e.getX();
 			y=e.getY();
 			System.out.println(e.getX()+"  "+e.getY());
@@ -54,7 +45,6 @@ public class MouseManager implements MouseListener, MouseMotionListener{
 			
 		    if (e.getButton() == MouseEvent.BUTTON1) {
 		    	pressDown++;
-		    	//System.out.println(pressDown);
 		    }
 		    if(pressDown==2) {
 		    	pressed=true;
@@ -65,7 +55,6 @@ public class MouseManager implements MouseListener, MouseMotionListener{
 		@Override
 		public void mouseReleased(MouseEvent e) {
 			pressed=false;
-
 		}
 
 	
