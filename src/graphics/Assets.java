@@ -3,12 +3,14 @@ package graphics;
 import java.awt.image.BufferedImage;
 import java.util.Arrays;
 
+import com.sun.org.apache.xpath.internal.operations.Variable;
+
 import forms.GameForm;
 
 public class Assets
 {
 	
-	public static BufferedImage player,H_block[],V_block[],bg;
+	public static BufferedImage player,H_block[],V_block[],bg2,bg1,variables[];
 	// pictures of the pop up messages
 	public static BufferedImage msgs [];
 	// pictures of the cards in the bag
@@ -47,8 +49,9 @@ public class Assets
 		 V_block[1]=V_blockLoader.crop(0, 0,10, 10);
 		 V_block[2]=V_blockLoader.crop(0, 0,10, 10);
 		 
+		 bg1 =ImageLoader.loadImage("/textures/LEVEL 1/BackGround2.png");
+		 bg2 =ImageLoader.loadImage("/textures/IF_Design.png");
 		 
-		 bg =ImageLoader.loadImage("/textures/IF_Design.png");
 		 // loop to cut the 10 messages from the Spreadsheet
 		 for(int i=0,x=0;i<10;i++)
 		 {
@@ -93,6 +96,19 @@ public class Assets
 		 CodePhaseData_lvl2[17]= ImageLoader.loadImage("/textures/Level2_IF/17.png");
 		 CodePhaseData_lvl2[18]= ImageLoader.loadImage("/textures/Level2_IF/18.png");
 		 CodePhaseData_lvl2[19]= ImageLoader.loadImage("/textures/Level2_IF/end.png");
+		 
+		 
+		 variables= new BufferedImage[9];
+		 
+		 variables[0]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/-5-.png");
+		 variables[1]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/I love reading_.png");
+		 variables[2]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/What is your name_.png");
+		 variables[3]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/0.8.png");
+		 variables[4]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/0.png");
+		 variables[5]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/3.0.png");
+		 variables[6]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/5.png");
+		 variables[7]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/7.3.png");
+		 variables[8]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/9.png");
 
 		 
 

@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import Input.KeyManager;
@@ -14,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import com.sun.javafx.geom.Rectangle;
 import com.sun.javafx.geom.Shape;
@@ -70,14 +73,7 @@ public abstract class GameForm implements Runnable {
 	 * Create the application.
 	 */
 	public GameForm() {
-		//Back button action
-		 back_btn.addActionListener(new ActionListener()
-		    {
-		        public void actionPerformed(ActionEvent e){   
-		   	//---------------------****write the Back button Action here****-----------
-		        	System.exit(0);
-		    }       
-		    });
+
 	}
 
 	/**
@@ -127,9 +123,30 @@ public abstract class GameForm implements Runnable {
 				back_btn.setForeground(Color.WHITE);
 				Font myFont = new Font ("Courier New", 1, 20);
 				back_btn.setFont(myFont);
+				back_btn.setFocusable(false);
+				panel.setFocusable(false);
 				panel.add(back_btn);
 			    panel.add(Box.createRigidArea(new Dimension(-10, 150)));
+		
+			    
+	/*	//---------------------------------------------  test -------------------------------	    
 
+*/
+				//---------------------------------------Back button action------------------//
+				 back_btn.addActionListener(new ActionListener()
+				    {
+				        public void actionPerformed(ActionEvent e){   
+				   	//---------------------****write the Back button Action here****-------
+				        	//System.exit(0); 
+				        	//JOptionPane.showInputDialog(canvas.requestFocusInWindow());
+				        	back_btn.setBackground(Color.red);
+				        }
+				   });
+			   //---------------------------------------Back button action------------------//
+
+				 
+		//---------------------------------------------  test -------------------------------
+				 
 		//canvas
 		canvas.setSize(frmGame.getWidth()*4/5, frmGame.getHeight());
 		GridBagConstraints gbc_canvas = new GridBagConstraints();
@@ -187,6 +204,11 @@ public abstract class GameForm implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public Canvas getcanvas() {
+		// TODO Auto-generated method stub
+		return canvas;
 	}
 
 }

@@ -53,10 +53,10 @@ public class Player extends Creature{
 		// Animation 
 		topBlock.tick();
 		centerBlock.tick();
-		
+	//	System.out.println(x+"  "+y);
 	try {	
-		System.out.println("X "+x+" width "+IF_form.get_canvas().getWidth());
-		System.out.println("Y "+y+" height "+IF_form.get_canvas().getHeight());
+		//System.out.println("X "+x+" width "+IF_form.get_canvas().getWidth());
+		//System.out.println("Y "+y+" height "+IF_form.get_canvas().getHeight());
 		markX="c";
 		
 		//Mark Y
@@ -249,11 +249,11 @@ public class Player extends Creature{
 	}
 		
 	/*================================================== collision of down walk sides==================================*/
-
+/*
 			System.out.println(markY+" "+markX+" "+down_blocks_markX);//just for testing :)
 			System.out.println(bag.get_card());//just for testing :)
 			System.out.println(bag.get_cardNo());//just for testing :)
-
+*/
 			
 	/*================================================== collision of Blocks==================================*/
 			

@@ -33,11 +33,13 @@ public class IF_form extends GameForm {
 
 	}
 	
+	//test
+	int i=0;
 		@Override
 	protected void tick() {
 		keyManager.tick();		
 		if(state.getState()!=null)
-		state.getState().tick();		
+		state.getState().tick();	
 	}
 
 	@Override
@@ -63,7 +65,7 @@ public class IF_form extends GameForm {
 		//Draw Here
 		
 		//background
-		g.drawImage(Assets.bg,0, 0,canvas.getWidth(),canvas.getHeight(), null);
+		g.drawImage(Assets.bg2,0, 0,canvas.getWidth(),canvas.getHeight(), null);
 		
 		//top blocks
 		
@@ -73,7 +75,7 @@ public class IF_form extends GameForm {
 			g.drawImage(Player.topBlock.getCurrentFrame(),canvas.getWidth()*45/105, canvas.getHeight()*27/100,null);
 		}
 		else
-		{
+		{	
 			g.drawImage(Assets.H_block[0],canvas.getWidth()*45/105, canvas.getHeight()*27/100,canvas.getWidth()*61/350,canvas.getHeight()*40/2600,null);
 		}
 
