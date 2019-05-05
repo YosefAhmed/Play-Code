@@ -2,7 +2,7 @@ package States;
 
 import java.awt.Graphics;
 
-import forms.Var_form;
+import Variables_Level.Var_form;
 
 public class var_state extends state{
 

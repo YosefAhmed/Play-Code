@@ -3,7 +3,7 @@ package States;
 import java.awt.Graphics;
 
 import Entities.Player;
-import forms.IF_form;
+import IF_Level.IF_form;
 
 public class IF_state extends state{
 

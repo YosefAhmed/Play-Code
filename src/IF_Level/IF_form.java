@@ -1,4 +1,4 @@
-package forms;
+package IF_Level;
 import java.awt.*;
 
 import javax.swing.JButton;
@@ -8,6 +8,8 @@ import Entities.Player;
 import Input.KeyManager;
 import States.IF_state;
 import States.state;
+import forms.GameForm;
+import forms.Intro_Form;
 import graphics.Animation;
 import graphics.Assets;
 
@@ -15,10 +17,10 @@ public class IF_form extends GameForm {
 
 	
 	//Input
+	private Intro_Form intro;
 	protected KeyManager keyManager;
 	public IF_form(){
 		keyManager = new KeyManager();
-		
 	}
 	
 	@Override
@@ -28,8 +30,6 @@ public class IF_form extends GameForm {
 		gamestate=new IF_state(this);
 		state.setState(gamestate);
 		frmGame.addKeyListener(keyManager);
-
-		
 
 	}
 	
@@ -44,6 +44,7 @@ public class IF_form extends GameForm {
 
 	@Override
 	protected void render() {
+		try {
 		bs1 = canvas1.getBufferStrategy();
 		if(bs1==null) {
 			canvas1.createBufferStrategy(3);//number of buffers
@@ -88,12 +89,12 @@ public class IF_form extends GameForm {
 				g.drawImage(Player.topBlock.getCurrentFrame(),canvas.getWidth()*39/106, canvas.getHeight()*181/250,null);
 			}
 			else
-				g.drawImage(Assets.H_block[0],canvas.getWidth()*39/106, canvas.getHeight()*181/250,canvas.getWidth()*12/130,canvas.getHeight()*1/70,null);
+				g.drawImage(Assets.H_block[0],canvas.getWidth()*40/107, canvas.getHeight()*181/250,canvas.getWidth()*12/150,canvas.getHeight()*1/70,null);
 		}
 		else
 		{
 			
-			g.drawImage(Assets.H_block[0],canvas.getWidth()*39/106, canvas.getHeight()*181/250,canvas.getWidth()*12/130,canvas.getHeight()*1/70,null);
+			g.drawImage(Assets.H_block[0],canvas.getWidth()*40/107, canvas.getHeight()*181/250,canvas.getWidth()*12/150,canvas.getHeight()*1/70,null);
 		}
 		
 		if((Player.bag.get_card()=="VIP"||Player.bag.get_card()=="Ordinary" )&& Player.bag.get_cardNo()==100)
@@ -103,11 +104,11 @@ public class IF_form extends GameForm {
 				g.drawImage(Player.topBlock.getCurrentFrame(),canvas.getWidth()*50/106, canvas.getHeight()*181/250,null);
 			}
 			else
-				g.drawImage(Assets.H_block[0],canvas.getWidth()*50/106, canvas.getHeight()*181/250,canvas.getWidth()*12/130,canvas.getHeight()*1/70,null);
+				g.drawImage(Assets.H_block[0],canvas.getWidth()*51/107, canvas.getHeight()*181/250,canvas.getWidth()*12/150,canvas.getHeight()*1/70,null);
 		}
 		else
 		{
-			g.drawImage(Assets.H_block[0],canvas.getWidth()*50/106, canvas.getHeight()*181/250,canvas.getWidth()*12/130,canvas.getHeight()*1/70,null);
+			g.drawImage(Assets.H_block[0],canvas.getWidth()*51/107, canvas.getHeight()*181/250,canvas.getWidth()*12/150,canvas.getHeight()*1/70,null);
 		}
 		if(Player.bag.get_card()=="Ordinary"&& Player.bag.get_cardNo()==150)
 		{
@@ -116,12 +117,12 @@ public class IF_form extends GameForm {
 				g.drawImage(Player.topBlock.getCurrentFrame(),canvas.getWidth()*60/105, canvas.getHeight()*181/250,null);
 			}
 			else
-				g.drawImage(Assets.H_block[0],canvas.getWidth()*60/105, canvas.getHeight()*181/250,canvas.getWidth()*12/130,canvas.getHeight()*1/70,null);
+				g.drawImage(Assets.H_block[0],canvas.getWidth()*62/107, canvas.getHeight()*181/250,canvas.getWidth()*12/150,canvas.getHeight()*1/70,null);
 		}
 		else
 		{
 			
-			g.drawImage(Assets.H_block[0],canvas.getWidth()*60/105, canvas.getHeight()*181/250,canvas.getWidth()*12/130,canvas.getHeight()*1/70,null);
+			g.drawImage(Assets.H_block[0],canvas.getWidth()*62/107, canvas.getHeight()*181/250,canvas.getWidth()*12/150,canvas.getHeight()*1/70,null);
 		}
 		//right blocks
 		
@@ -225,7 +226,9 @@ public class IF_form extends GameForm {
 		bs.show();
 		bs1.show();
 		g.dispose(); 
-
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
 		
 	}
 

@@ -1,39 +1,25 @@
 package forms;
 
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
-import Input.KeyManager;
-
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
-import com.sun.javafx.geom.Rectangle;
-import com.sun.javafx.geom.Shape;
-
+import Start.Launcher;
 import States.state;
 import graphics.Assets;
-import graphics.ImageLoader;
 import graphics.SpriteSheet;
-import java.awt.GridLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Canvas;
 import java.awt.Color;
-import java.awt.Container;
-import java.awt.Button;
-import java.awt.Panel;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -46,7 +32,7 @@ public abstract class GameForm implements Runnable {
 	private boolean running=false;
 	
 	//containers
-	public JFrame frmGame;
+	public static JFrame frmGame;
 	protected static  Canvas canvas1 = new Canvas(); //the bag
 	protected static  Canvas canvas = new Canvas(); //the game place
 	protected static JPanel panel =new JPanel(); //the panel contains the bag
@@ -65,15 +51,14 @@ public abstract class GameForm implements Runnable {
 	protected state gamestate;
 
 	//Back Button
-	JButton back_btn=new JButton("Back");
-
+	protected JButton back_btn=new JButton("Back");
+	
 	
 	
 	/**
 	 * Create the application.
 	 */
 	public GameForm() {
-
 	}
 
 	/**
@@ -83,6 +68,7 @@ public abstract class GameForm implements Runnable {
 		
 		//form
 		frmGame = new JFrame();
+		frmGame.setIconImage(Assets.icon);
 		frmGame.setTitle("Game");
 		Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();
 		frmGame.setSize(screenSize.width*3/4,screenSize.height*3/4);
@@ -124,6 +110,7 @@ public abstract class GameForm implements Runnable {
 				Font myFont = new Font ("Courier New", 1, 20);
 				back_btn.setFont(myFont);
 				back_btn.setFocusable(false);
+	        	back_btn.setEnabled(true);
 				panel.setFocusable(false);
 				panel.add(back_btn);
 			    panel.add(Box.createRigidArea(new Dimension(-10, 150)));
@@ -136,10 +123,16 @@ public abstract class GameForm implements Runnable {
 				 back_btn.addActionListener(new ActionListener()
 				    {
 				        public void actionPerformed(ActionEvent e){   
-				   	//---------------------****write the Back button Action here****-------
-				        	//System.exit(0); 
+				   	//---------------------****write the Back button Action here****---------
 				        	//JOptionPane.showInputDialog(canvas.requestFocusInWindow());
-				        	back_btn.setBackground(Color.red);
+				        	Launcher.main(null); //new Main_Form();
+				        	bs.dispose();
+				        	bs1.dispose();
+				        	panel.removeAll();
+				        	//back_btn.getModel().setPressed(true);
+				        	frmGame.dispose();
+				        	back_btn.setEnabled(false);
+				        	
 				        }
 				   });
 			   //---------------------------------------Back button action------------------//
@@ -175,12 +168,17 @@ public abstract class GameForm implements Runnable {
 		double delta=0;
 		long now , lastTime=System.nanoTime();
 		while(running) {
+			if(!back_btn.isEnabled()) {
+				System.out.println("returned");	
+				return;
+			}
 			now=System.nanoTime();
 			delta+=(now-lastTime)/timePerTick;
 			lastTime=now;
 			if(delta >=1) {
 			tick();
 			render();
+				
 			delta--;
 			}
 		}

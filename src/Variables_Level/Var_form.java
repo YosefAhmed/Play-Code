@@ -1,8 +1,9 @@
-package forms;
+package Variables_Level;
 
 import javax.swing.JOptionPane;
 import Input.MouseManager;
 import States.state;
+import forms.GameForm;
 import graphics.Assets;
 import graphics.Locations;
 
@@ -38,9 +39,11 @@ public class Var_form extends GameForm{
 	
 	@Override
 	protected void render() {
+		try {
 		bs1 = canvas1.getBufferStrategy();
 		if(bs1==null) {
 			canvas1.createBufferStrategy(3);//number of buffers
+			System.out.println("bs1 is created");
 			return;
 		}
 		
@@ -49,13 +52,15 @@ public class Var_form extends GameForm{
 			canvas.createBufferStrategy(3);//number of buffers
 			return;
 		}
-		
+		//System.out.println(bs1);
+
+		//System.out.println(bs);
 		g=bs.getDrawGraphics();
 		g1=bs1.getDrawGraphics();
 
 		//clear screen
 		g.clearRect(0, 0,canvas.getWidth(), canvas.getHeight());
-		g1.clearRect(0, 0, canvas1.getWidth(), canvas1.getHeight());
+	//	g1.clearRect(0, 0, canvas1.getWidth(), canvas1.getHeight());
 		
 		
 		//Draw Here
@@ -94,6 +99,8 @@ public class Var_form extends GameForm{
 				loc.relateToCanvas(60, 'x'),loc.relateToCanvas(75, 'y'), null);
 		
 		
+		System.out.println(move.state);
+		
 	// if the return of loc.checkLocation is UpperCase then the click is on one of the objects	
 		if(move.state==0 && Character.isUpperCase(loc.checkLocation(move.x, move.y))) {
 		  
@@ -106,6 +113,10 @@ public class Var_form extends GameForm{
 			JOptionPane.showMessageDialog(null, "Object Selected");
 
 		 
+		}
+		else if(move.state==1 && Character.isUpperCase(loc.checkLocation(move.x, move.y))) {
+			  
+			move.state=0;
 		}
 		//if i released on the right place
 		else if(move.state==1 && (loc.checkLocation(move.x, move.y) == 'i' ||
@@ -126,15 +137,18 @@ public class Var_form extends GameForm{
 		//	width=50;
 		//	hight=50;
 		}
-
-		g.drawImage(Assets.player,preX,preY,width,hight,null);
 		
 
 		//End Drawing
 		move.x = move.y = 0;
+		
 		bs.show();
-		bs1.show();
+		//bs1.show();
 		g.dispose(); 		
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
+
 
 }

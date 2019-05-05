@@ -6,9 +6,11 @@ import java.util.Random;
 
 import javax.swing.JButton;
 
+import IF_Level.IF_Level_Code;
+import IF_Level.IF_form;
 import forms.Code_Form;
 import forms.GameForm;
-import forms.IF_form;
+import forms.Intro_Form;
 import graphics.Animation;
 import graphics.Assets;
 
@@ -470,7 +472,8 @@ public class Player extends Creature{
 			{
 				if(!IsFinished)
 				{
-					new Code_Form();
+					IF_form.frmGame.setVisible(false);
+					new IF_Level_Code();
 					IsFinished = true;					
 				}
 			}

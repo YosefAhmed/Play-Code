@@ -9,6 +9,8 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.ImageIcon;
@@ -16,20 +18,22 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import IF_Level.IF_form;
 import graphics.Assets;
 
-public abstract class Code_Form extends JFrame {
+public abstract class Intro_Form extends JFrame {
 
 	protected JLabel pic;
 	private JButton NextBt, BackBt;
-    private static int CurrentImage = 1;
+    private static int CurrentImage ;    
     public int NoOfImages ;
-           	
-	public Code_Form() {		
+       
+	public Intro_Form() {
 		setNoOfImages();
 		setIconImage(Assets.icon);
+		CurrentImage = 1;
 		pic = new JLabel();
-        pic.setBounds(220,50,560,410);
+        pic.setBounds(220,50,700,410);
         
 		DisplayImg(0);
         
@@ -40,19 +44,31 @@ public abstract class Code_Form extends JFrame {
         NextBt.setBackground(Color.darkGray);
         NextBt.setForeground(Color.WHITE);       
         NextBt.addActionListener(new ActionListener() {
-			
+        	
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				NextBt.setText("Next");
-		        BackBt.setVisible(true);
-		        DisplayImg(CurrentImage);
-				CurrentImage += 1;
-                
-				if(CurrentImage == NoOfImages )
-                {
-					NextBt.setVisible(false);
-                }
-			}
+			public void actionPerformed(ActionEvent arg0) {				
+				if (NextBt.getText()=="Play")
+				{
+					IF_form game = new IF_form();
+					game.start();
+					setVisible(false);
+				}
+				else
+				{
+					NextBt.setText("Next");
+			        BackBt.setVisible(true);
+			        DisplayImg(CurrentImage);
+					CurrentImage += 1;
+	                
+					if(CurrentImage == NoOfImages )
+	                {
+						NextBt.setText("Play");
+	                }
+					else 
+						NextBt.setText("Next");
+				}
+			  }
+			
 		});
         
       //Back Button setUp
@@ -64,17 +80,17 @@ public abstract class Code_Form extends JFrame {
         BackBt.addActionListener(new ActionListener() {
 			
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {	
+				NextBt.setText("Next");
 				NextBt.setVisible(true);
 				DisplayImg(CurrentImage--);
 				if(CurrentImage == 0 )
                 {
 					BackBt.setVisible(false);
 					NextBt.setText("Start");
+              
                 }
 
-
-				
 			}
 		});
         
@@ -83,7 +99,7 @@ public abstract class Code_Form extends JFrame {
         add(NextBt);
         add(BackBt);
         BackBt.setVisible(false);
-        setTitle("Coding Phase");
+        setTitle("Introduction to the Game");
         setLayout(null);
 		Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();
         setSize(screenSize.width*3/4,screenSize.height*3/4);
@@ -97,5 +113,6 @@ public abstract class Code_Form extends JFrame {
 	public abstract void setNoOfImages();
 
 	public abstract void DisplayImg(int i);
+	
 	
 }

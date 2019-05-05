@@ -5,7 +5,7 @@ import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-import forms.IF_form;
+import IF_Level.IF_form;
 import javafx.util.Pair;
 
 public class bag {
@@ -19,18 +19,6 @@ public class bag {
 	}
 
 	
-	/*public void addComponants() {
-		if(g.game.get_panel().getComponentCount()==0) {
-			JButton b=new JButton("open");
-			g.game.get_panel().add(b);
-			g.game.get_panel().setBackground(Color.CYAN);
-			
-			//JOptionPane.showMessageDialog(null,"");
-		}
-		else
-			g.game.get_panel().setBackground(Color.WHITE);
-	}
-	*/
 	public void set_card(String card)
 	{
 		this.cardName=card;
