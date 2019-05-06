@@ -120,16 +120,16 @@ public class Assets
 		 IntroPhaseData_lvl2[5] = ImageLoader.loadImage("/textures/Level2_IF/Intro/6.png");
 				 
 				 
-		 variables= new BufferedImage[9];
+		 variables= new BufferedImage[10];
 		 
 		 variables[0]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/-5-.png");
 		 variables[1]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/I love reading_.png");
 		 variables[2]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/What is your name_.png");
 		 variables[3]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/0.8.png");
-		 variables[4]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/0.png");
+		 variables[4]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/7.3.png");
 		 variables[5]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/3.0.png");
 		 variables[6]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/5.png");
-		 variables[7]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/7.3.png");
+		 variables[7]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/0.png");
 		 variables[8]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/9.png");
 
 		 

@@ -13,7 +13,7 @@ public class Launcher
 	{
 
 		m = new Main_Form();
-	//test t = new test();
+	    //test t = new test();
 		//t.start();
 		//IF_form g = new IF_form();
 		//Var_form g=new Var_form();

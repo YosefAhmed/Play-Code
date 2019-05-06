@@ -13,6 +13,7 @@ import forms.GameForm;
 import forms.Intro_Form;
 import graphics.Animation;
 import graphics.Assets;
+import graphics.collision;
 
 /**This class responsible for moving the player based on the key input */
 public class Player extends Creature{
@@ -42,6 +43,8 @@ public class Player extends Creature{
 		centerBlock = new Animation(650,Assets.V_block,3);
 	}
 	
+	//collision coll =new collision(x, y);
+	
 	/**mark :char to mark the Y position
 	 * markX :char to mark the X position
 	 * */
@@ -57,6 +60,10 @@ public class Player extends Creature{
 		centerBlock.tick();
 	//	System.out.println(x+"  "+y);
 	try {	
+			
+			//x=coll.leftCollision().getKey();
+			//y=coll.leftCollision().getValue();
+		
 		//System.out.println("X "+x+" width "+IF_form.get_canvas().getWidth());
 		//System.out.println("Y "+y+" height "+IF_form.get_canvas().getHeight());
 		markX="c";
