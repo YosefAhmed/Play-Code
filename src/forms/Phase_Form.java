@@ -1,40 +1,30 @@
 package forms;
 
-import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.image.BufferStrategy;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import IF_Level.IF_form;
 import graphics.Assets;
 
-public abstract class Intro_Form extends JFrame {
+public abstract class Phase_Form extends JFrame
+{
 
 	protected JLabel pic;
 	private JButton NextBt, BackBt;
-    private static int CurrentImage ;    
-    public int NoOfImages ;
-       
-	public Intro_Form() {
+    public static int CurrentImage = 1;
+    protected int NoOfImages ;
+           	
+	public Phase_Form() {		
 		setNoOfImages();
 		setIconImage(Assets.icon);
-		CurrentImage = 1;
 		pic = new JLabel();
-        pic.setBounds(220,50,700,410);
-        
+        pic.setBounds(220,50,560,410);
 		DisplayImg(0);
         
         //Next Button setUp
@@ -44,31 +34,32 @@ public abstract class Intro_Form extends JFrame {
         NextBt.setBackground(Color.darkGray);
         NextBt.setForeground(Color.WHITE);       
         NextBt.addActionListener(new ActionListener() {
-        	
 			@Override
-			public void actionPerformed(ActionEvent arg0) {				
-				if (NextBt.getText()=="Play")
+			public void actionPerformed(ActionEvent arg0) {
+				if (NextBt.getText()=="Finish")
 				{
-					IF_form game = new IF_form();
-					game.start();
-					setVisible(false);
+					finish();
+					dispose();
+					CurrentImage=1;
 				}
 				else
 				{
 					NextBt.setText("Next");
 			        BackBt.setVisible(true);
-			        DisplayImg(CurrentImage);
-					CurrentImage += 1;
-	                
+
+			        DisplayImg(CurrentImage++);
+
 					if(CurrentImage == NoOfImages )
 	                {
-						NextBt.setText("Play");
+						
+						CurrentImage--;
+						NextBt.setText("Finish");
 	                }
 					else 
 						NextBt.setText("Next");
+
 				}
-			  }
-			
+			}
 		});
         
       //Back Button setUp
@@ -77,29 +68,32 @@ public abstract class Intro_Form extends JFrame {
         BackBt.setText("Back");
         BackBt.setBackground(Color.darkGray);
         BackBt.setForeground(Color.WHITE);       
-        BackBt.addActionListener(new ActionListener() {
-			
+		System.out.println(CurrentImage);
+
+        BackBt.addActionListener(new ActionListener() {		
 			@Override
-			public void actionPerformed(ActionEvent e) {	
+			public void actionPerformed(ActionEvent e) {
 				NextBt.setText("Next");
 				NextBt.setVisible(true);
-				DisplayImg(CurrentImage--);
-				if(CurrentImage == 0 )
+				
+					DisplayImg(--CurrentImage);
+
+			    if(CurrentImage == 0 )
                 {
+					CurrentImage++;
 					BackBt.setVisible(false);
 					NextBt.setText("Start");
-              
                 }
+
 
 			}
 		});
-        
+ 
         //Form Elements setUp
         add(pic);
         add(NextBt);
         add(BackBt);
         BackBt.setVisible(false);
-        setTitle("Introduction to the Game");
         setLayout(null);
 		Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();
         setSize(screenSize.width*3/4,screenSize.height*3/4);
@@ -107,12 +101,12 @@ public abstract class Intro_Form extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
-        
+        setResizable(false);
     }
     
 	public abstract void setNoOfImages();
 
 	public abstract void DisplayImg(int i);
 	
-	
+	public abstract void finish(); 
 }

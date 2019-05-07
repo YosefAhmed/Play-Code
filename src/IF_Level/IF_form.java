@@ -9,7 +9,6 @@ import Input.KeyManager;
 import States.IF_state;
 import States.state;
 import forms.GameForm;
-import forms.Intro_Form;
 import graphics.Animation;
 import graphics.Assets;
 
@@ -17,7 +16,6 @@ public class IF_form extends GameForm {
 
 	
 	//Input
-	private Intro_Form intro;
 	protected KeyManager keyManager;
 	public IF_form(){
 		keyManager = new KeyManager();
@@ -33,9 +31,7 @@ public class IF_form extends GameForm {
 
 	}
 	
-	//test
-	int i=0;
-		@Override
+	@Override
 	protected void tick() {
 		keyManager.tick();		
 		if(state.getState()!=null)
@@ -44,7 +40,6 @@ public class IF_form extends GameForm {
 
 	@Override
 	protected void render() {
-		try {
 		bs1 = canvas1.getBufferStrategy();
 		if(bs1==null) {
 			canvas1.createBufferStrategy(3);//number of buffers
@@ -70,10 +65,10 @@ public class IF_form extends GameForm {
 		
 		//top blocks
 		
-		if(Player.bag.get_card()!=""&&Player.animationBlocks[0]==true )
+		if(Player.coll.bag.get_card()!=""&&Player.coll.animationBlocks[0]==true )
 		{
 			
-			g.drawImage(Player.topBlock.getCurrentFrame(),canvas.getWidth()*45/105, canvas.getHeight()*27/100,null);
+			g.drawImage(Player.coll.topBlock.getCurrentFrame(),canvas.getWidth()*45/105, canvas.getHeight()*27/100,null);
 		}
 		else
 		{	
@@ -82,11 +77,11 @@ public class IF_form extends GameForm {
 
 		
 		//down blocks
-		if(Player.bag.get_card()=="VIP"&& Player.bag.get_cardNo()==70)
+		if(Player.coll.bag.get_card()=="VIP"&& Player.coll.bag.get_cardNo()==70)
 		{
-			if(Player.animationBlocks[5])
+			if(Player.coll.animationBlocks[5])
 			{
-				g.drawImage(Player.topBlock.getCurrentFrame(),canvas.getWidth()*39/106, canvas.getHeight()*181/250,null);
+				g.drawImage(Player.coll.topBlock.getCurrentFrame(),canvas.getWidth()*39/106, canvas.getHeight()*181/250,null);
 			}
 			else
 				g.drawImage(Assets.H_block[0],canvas.getWidth()*40/107, canvas.getHeight()*181/250,canvas.getWidth()*12/150,canvas.getHeight()*1/70,null);
@@ -97,11 +92,11 @@ public class IF_form extends GameForm {
 			g.drawImage(Assets.H_block[0],canvas.getWidth()*40/107, canvas.getHeight()*181/250,canvas.getWidth()*12/150,canvas.getHeight()*1/70,null);
 		}
 		
-		if((Player.bag.get_card()=="VIP"||Player.bag.get_card()=="Ordinary" )&& Player.bag.get_cardNo()==100)
+		if((Player.coll.bag.get_card()=="VIP"||Player.coll.bag.get_card()=="Ordinary" )&& Player.coll.bag.get_cardNo()==100)
 		{
-			if(Player.animationBlocks[4])
+			if(Player.coll.animationBlocks[4])
 			{
-				g.drawImage(Player.topBlock.getCurrentFrame(),canvas.getWidth()*50/106, canvas.getHeight()*181/250,null);
+				g.drawImage(Player.coll.topBlock.getCurrentFrame(),canvas.getWidth()*50/106, canvas.getHeight()*181/250,null);
 			}
 			else
 				g.drawImage(Assets.H_block[0],canvas.getWidth()*51/107, canvas.getHeight()*181/250,canvas.getWidth()*12/150,canvas.getHeight()*1/70,null);
@@ -110,11 +105,11 @@ public class IF_form extends GameForm {
 		{
 			g.drawImage(Assets.H_block[0],canvas.getWidth()*51/107, canvas.getHeight()*181/250,canvas.getWidth()*12/150,canvas.getHeight()*1/70,null);
 		}
-		if(Player.bag.get_card()=="Ordinary"&& Player.bag.get_cardNo()==150)
+		if(Player.coll.bag.get_card()=="Ordinary"&& Player.coll.bag.get_cardNo()==150)
 		{
-			if(Player.animationBlocks[3])
+			if(Player.coll.animationBlocks[3])
 			{
-				g.drawImage(Player.topBlock.getCurrentFrame(),canvas.getWidth()*60/105, canvas.getHeight()*181/250,null);
+				g.drawImage(Player.coll.topBlock.getCurrentFrame(),canvas.getWidth()*60/105, canvas.getHeight()*181/250,null);
 			}
 			else
 				g.drawImage(Assets.H_block[0],canvas.getWidth()*62/107, canvas.getHeight()*181/250,canvas.getWidth()*12/150,canvas.getHeight()*1/70,null);
@@ -126,11 +121,11 @@ public class IF_form extends GameForm {
 		}
 		//right blocks
 		
-		if(Player.bag.get_card()=="VIP")
+		if(Player.coll.bag.get_card()=="VIP")
 		{
-			if(Player.animationBlocks[2])
+			if(Player.coll.animationBlocks[2])
 			{
-				g.drawImage(Player.centerBlock.getCurrentFrame(),canvas.getWidth()*74/100, canvas.getHeight()*203/500,null);
+				g.drawImage(Player.coll.centerBlock.getCurrentFrame(),canvas.getWidth()*74/100, canvas.getHeight()*203/500,null);
 			}
 			else
 			{
@@ -143,11 +138,11 @@ public class IF_form extends GameForm {
 		}
 		
 		//left blocks
-		if(Player.bag.get_card()=="Ordinary")
+		if(Player.coll.bag.get_card()=="Ordinary")
 		{
-			if(Player.animationBlocks[1])
+			if(Player.coll.animationBlocks[1])
 			{
-				g.drawImage(Player.centerBlock.getCurrentFrame(),canvas.getWidth()*145/500, canvas.getHeight()*203/500 ,null);
+				g.drawImage(Player.coll.centerBlock.getCurrentFrame(),canvas.getWidth()*145/500, canvas.getHeight()*203/500 ,null);
 			}
 			else
 			{
@@ -178,41 +173,41 @@ public class IF_form extends GameForm {
 		//********************************************** Set Messages Position *****************************************//
 		
 		// show the cards in the right canvas
-				if(Player.bag.get_card()=="VIP")
+				if(Player.coll.bag.get_card()=="VIP")
 				{
-					if(Player.bag.get_cardNo()==0)
+					if(Player.coll.bag.get_cardNo()==0)
 					{
 						g1.drawImage(Assets.card[0],0,0,canvas1.getWidth(), frmGame.getHeight()/4, null);
 					}
-					else if(Player.bag.get_cardNo()==70)
+					else if(Player.coll.bag.get_cardNo()==70)
 					{
 						g1.drawImage(Assets.VIPID[0],0,0,canvas1.getWidth(), frmGame.getHeight()/4, null);
 					}
-					else if(Player.bag.get_cardNo()==100)
+					else if(Player.coll.bag.get_cardNo()==100)
 					{
 						g1.drawImage(Assets.VIPID[1],0,0,canvas1.getWidth(), frmGame.getHeight()/4, null);	
 					}
-					else if(Player.bag.get_cardNo()==150)
+					else if(Player.coll.bag.get_cardNo()==150)
 					{
 						g1.drawImage(Assets.VIPID[2],0,0,canvas1.getWidth(), frmGame.getHeight()/4, null);	
 					}
 					
 				}
-				else if(Player.bag.get_card()=="Ordinary")
+				else if(Player.coll.bag.get_card()=="Ordinary")
 				{
-					if(Player.bag.get_cardNo()==0)
+					if(Player.coll.bag.get_cardNo()==0)
 					{
 						g1.drawImage(Assets.card[1],0,0,canvas1.getWidth(), frmGame.getHeight()/4, null);
 					}
-					else if(Player.bag.get_cardNo()==70)
+					else if(Player.coll.bag.get_cardNo()==70)
 					{
 						g1.drawImage(Assets.OrdinaryID[0],0,0,canvas1.getWidth(), frmGame.getHeight()/4, null);
 					}
-					else if(Player.bag.get_cardNo()==100)
+					else if(Player.coll.bag.get_cardNo()==100)
 					{
 						g1.drawImage(Assets.OrdinaryID[1],0,0,canvas1.getWidth(), frmGame.getHeight()/4, null);	
 					}
-					else if(Player.bag.get_cardNo()==150)
+					else if(Player.coll.bag.get_cardNo()==150)
 					{
 						g1.drawImage(Assets.OrdinaryID[2],0,0,canvas1.getWidth(), frmGame.getHeight()/4, null);	
 					}
@@ -226,9 +221,8 @@ public class IF_form extends GameForm {
 		bs.show();
 		bs1.show();
 		g.dispose(); 
-		}catch (Exception e) {
-			// TODO: handle exception
-		}
+		g1.dispose();
+
 		
 	}
 

@@ -27,6 +27,8 @@ public class Assets
 	static public  boolean Messages[];
 	public static BufferedImage CodePhaseData_lvl2[];
 	public static BufferedImage IntroPhaseData_lvl2[];
+	public static BufferedImage CodePhaseData_lvl1[];
+	public static BufferedImage IntroPhaseData_lvl1[];
 
 	public static void init()
 	{
@@ -35,6 +37,8 @@ public class Assets
 		mainLevel1Button = ImageLoader.loadImage("/textures/MainForm/level1.png");
 		mainLevel2Button = ImageLoader.loadImage("/textures/MainForm/level2.png");
 		mainLevel3Button = ImageLoader.loadImage("/textures/MainForm/level3.png");
+		
+		/*================================================== IF==================================*/
 		SpriteSheet H_blockLoader,V_blockLoader,messages,sheet,cards;
 		messages=new SpriteSheet(ImageLoader.loadImage("/textures/msgs.png"));	
 		sheet =new SpriteSheet(ImageLoader.loadImage("/textures/spritesheet.png"));   //the sprite sheet picture 
@@ -111,26 +115,65 @@ public class Assets
 		 
 		 
 		 // IF Intro Phase
-		 IntroPhaseData_lvl2 = new BufferedImage[6];
-		 IntroPhaseData_lvl2[0] = ImageLoader.loadImage("/textures/Level2_IF/Intro/1.png");
-		 IntroPhaseData_lvl2[1] = ImageLoader.loadImage("/textures/Level2_IF/Intro/2.png");
-		 IntroPhaseData_lvl2[2] = ImageLoader.loadImage("/textures/Level2_IF/Intro/3.png");
-		 IntroPhaseData_lvl2[3] = ImageLoader.loadImage("/textures/Level2_IF/Intro/4.png");
-		 IntroPhaseData_lvl2[4] = ImageLoader.loadImage("/textures/Level2_IF/Intro/5.png");
-		 IntroPhaseData_lvl2[5] = ImageLoader.loadImage("/textures/Level2_IF/Intro/6.png");
+		 IntroPhaseData_lvl2 = new BufferedImage[8];
+		 IntroPhaseData_lvl2[0] = ImageLoader.loadImage("/textures/Level2_IF/Intro/0.png");
+		 IntroPhaseData_lvl2[1] = ImageLoader.loadImage("/textures/Level2_IF/Intro/1.png");
+		 IntroPhaseData_lvl2[2] = ImageLoader.loadImage("/textures/Level2_IF/Intro/2.png");
+		 IntroPhaseData_lvl2[3] = ImageLoader.loadImage("/textures/Level2_IF/Intro/3.png");
+		 IntroPhaseData_lvl2[4] = ImageLoader.loadImage("/textures/Level2_IF/Intro/4.png");
+		 IntroPhaseData_lvl2[5] = ImageLoader.loadImage("/textures/Level2_IF/Intro/5.png");
+		 IntroPhaseData_lvl2[6] = ImageLoader.loadImage("/textures/Level2_IF/Intro/6.png");
+		 IntroPhaseData_lvl2[7] = ImageLoader.loadImage("/textures/Level2_IF/Intro/7.png");
 				 
-				 
-		 variables= new BufferedImage[10];
+		 /*================================================== IF ==================================*/
 		 
+		 /*================================================== Variables==================================*/
+		 
+		 variables= new BufferedImage[13];
+		 //strings
 		 variables[0]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/-5-.png");
-		 variables[1]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/I love reading_.png");
-		 variables[2]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/What is your name_.png");
-		 variables[3]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/0.8.png");
-		 variables[4]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/7.3.png");
-		 variables[5]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/3.0.png");
-		 variables[6]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/5.png");
-		 variables[7]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/0.png");
-		 variables[8]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/9.png");
+		 variables[4]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/I love reading_.png");
+		 variables[6]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/What is your name_.png");
+		 variables[11]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/final.png");
+		 // floats
+		 variables[1]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/0.8.png");
+		 variables[3]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/0.0.png");
+		 variables[9]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/7.3.png");
+		 variables[10]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/3.0.png");
+		 // integers
+		 variables[2]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/5.png");
+		 variables[5]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/0.png");
+		 variables[7]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/9.png");
+		 variables[8]=ImageLoader.loadImage("/textures/LEVEL 1/Spirates2/67.png");
+		 
+		 // var code Phase
+		 CodePhaseData_lvl1 = new BufferedImage[10];
+		 
+		 CodePhaseData_lvl1[0]= ImageLoader.loadImage("/textures/LEVEL 1/Code/1.png");
+		 CodePhaseData_lvl1[1]= ImageLoader.loadImage("/textures/LEVEL 1/Code/2.png");
+		 CodePhaseData_lvl1[2]= ImageLoader.loadImage("/textures/LEVEL 1/Code/3.png");
+		 CodePhaseData_lvl1[3]= ImageLoader.loadImage("/textures/LEVEL 1/Code/4.png");
+		 CodePhaseData_lvl1[4]= ImageLoader.loadImage("/textures/LEVEL 1/Code/5.png");
+		 CodePhaseData_lvl1[5]= ImageLoader.loadImage("/textures/LEVEL 1/Code/6.png");
+		 CodePhaseData_lvl1[6]= ImageLoader.loadImage("/textures/LEVEL 1/Code/7.png");
+		 CodePhaseData_lvl1[7]= ImageLoader.loadImage("/textures/LEVEL 1/Code/8.png");
+		 CodePhaseData_lvl1[8]= ImageLoader.loadImage("/textures/LEVEL 1/Code/9.png");
+		 CodePhaseData_lvl1[9]= ImageLoader.loadImage("/textures/LEVEL 1/Code/10.png");
+		 
+		 // var code Phase
+		 IntroPhaseData_lvl1 = new BufferedImage[9];
+		 
+		 IntroPhaseData_lvl1[0]= ImageLoader.loadImage("/textures/LEVEL 1/Intro/0.png");
+		 IntroPhaseData_lvl1[1]= ImageLoader.loadImage("/textures/LEVEL 1/Intro/1.png");
+		 IntroPhaseData_lvl1[2]= ImageLoader.loadImage("/textures/LEVEL 1/Intro/2.png");
+		 IntroPhaseData_lvl1[3]= ImageLoader.loadImage("/textures/LEVEL 1/Intro/3.png");
+		 IntroPhaseData_lvl1[4]= ImageLoader.loadImage("/textures/LEVEL 1/Intro/4.png");
+		 IntroPhaseData_lvl1[5]= ImageLoader.loadImage("/textures/LEVEL 1/Intro/5.png");
+		 IntroPhaseData_lvl1[6]= ImageLoader.loadImage("/textures/LEVEL 1/Intro/6.png");
+		 IntroPhaseData_lvl1[7]= ImageLoader.loadImage("/textures/LEVEL 1/Intro/7.png");
+		 IntroPhaseData_lvl1[8]= ImageLoader.loadImage("/textures/LEVEL 1/Intro/8.png");
+
+		 /*================================================== Variables==================================*/
 
 		 
 

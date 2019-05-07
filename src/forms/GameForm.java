@@ -8,10 +8,10 @@ import java.awt.image.BufferStrategy;
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Start.Launcher;
+import States.IF_state;
 import States.state;
 import graphics.Assets;
 import graphics.SpriteSheet;
@@ -26,7 +26,6 @@ import java.awt.Insets;
 
 public abstract class GameForm implements Runnable {
 
-	//????????
 	private Thread thread;
 	//to control the loop in run()
 	private boolean running=false;
@@ -36,7 +35,9 @@ public abstract class GameForm implements Runnable {
 	protected static  Canvas canvas1 = new Canvas(); //the bag
 	protected static  Canvas canvas = new Canvas(); //the game place
 	protected static JPanel panel =new JPanel(); //the panel contains the bag
-
+	
+	//Flag to check back button
+	protected boolean backed;
 
 	//To allow drawing
 	protected BufferStrategy bs;
@@ -48,18 +49,11 @@ public abstract class GameForm implements Runnable {
 	//for assets
 	private SpriteSheet sheet;				
 	//state
-	protected state gamestate;
+	protected IF_state gamestate;
 
 	//Back Button
 	protected JButton back_btn=new JButton("Back");
 	
-	
-	
-	/**
-	 * Create the application.
-	 */
-	public GameForm() {
-	}
 
 	/**
 	 * Initialize the contents of the frame.
@@ -82,6 +76,10 @@ public abstract class GameForm implements Runnable {
 		frmGame.getContentPane().setLayout(gridBagLayout);
 		frmGame.setResizable(false);
 		
+
+
+
+		
 		//panel
 				GridBagConstraints gbc_panel = new GridBagConstraints();
 				gbc_panel.fill = GridBagConstraints.BOTH;
@@ -89,7 +87,6 @@ public abstract class GameForm implements Runnable {
 				gbc_panel.gridx = 0;
 				gbc_panel.gridy = 0;
 				panel.setLayout(new FlowLayout(FlowLayout.CENTER));
-				canvas1.setSize(frmGame.getWidth()*1/5, frmGame.getHeight());
 				frmGame.getContentPane().add(panel, gbc_panel);
 				panel.setBackground(Color.white);
 		
@@ -115,39 +112,34 @@ public abstract class GameForm implements Runnable {
 				panel.add(back_btn);
 			    panel.add(Box.createRigidArea(new Dimension(-10, 150)));
 		
+				//canvas
+				canvas.setSize(frmGame.getWidth()*4/5, frmGame.getHeight());
+				GridBagConstraints gbc_canvas = new GridBagConstraints();
+				gbc_canvas.fill = GridBagConstraints.BOTH;
+				gbc_canvas.gridx = 1;
+				gbc_canvas.gridy = 0;
+				canvas.setFocusable(false);
+				frmGame.getContentPane().add(canvas, gbc_canvas);
 			    
-	/*	//---------------------------------------------  test -------------------------------	    
 
-*/
-				//---------------------------------------Back button action------------------//
+	//---------------------------------------Back button action------------------//
 				 back_btn.addActionListener(new ActionListener()
 				    {
 				        public void actionPerformed(ActionEvent e){   
 				   	//---------------------****write the Back button Action here****---------
-				        	//JOptionPane.showInputDialog(canvas.requestFocusInWindow());
-				        	Launcher.main(null); //new Main_Form();
+				        	Launcher.main(null); 
+				        	panel.removeAll();
 				        	bs.dispose();
 				        	bs1.dispose();
-				        	panel.removeAll();
-				        	//back_btn.getModel().setPressed(true);
+				        	g.dispose();
+				        	g1.dispose();
 				        	frmGame.dispose();
 				        	back_btn.setEnabled(false);
+				        	backed=true;
 				        	
 				        }
 				   });
 			   //---------------------------------------Back button action------------------//
-
-				 
-		//---------------------------------------------  test -------------------------------
-				 
-		//canvas
-		canvas.setSize(frmGame.getWidth()*4/5, frmGame.getHeight());
-		GridBagConstraints gbc_canvas = new GridBagConstraints();
-		gbc_canvas.fill = GridBagConstraints.BOTH;
-		gbc_canvas.gridx = 1;
-		gbc_canvas.gridy = 0;
-		canvas.setFocusable(false);
-		frmGame.getContentPane().add(canvas, gbc_canvas);
 		
 
 	}
@@ -168,7 +160,8 @@ public abstract class GameForm implements Runnable {
 		double delta=0;
 		long now , lastTime=System.nanoTime();
 		while(running) {
-			if(!back_btn.isEnabled()) {
+			//check if back button clicked
+			if(backed) {
 				System.out.println("returned");	
 				return;
 			}
@@ -176,9 +169,10 @@ public abstract class GameForm implements Runnable {
 			delta+=(now-lastTime)/timePerTick;
 			lastTime=now;
 			if(delta >=1) {
-			tick();
-			render();
-				
+				if(!backed) {
+					tick();
+					render();
+				}
 			delta--;
 			}
 		}
@@ -199,13 +193,11 @@ public abstract class GameForm implements Runnable {
     	try {
 			thread.join();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	public Canvas getcanvas() {
-		// TODO Auto-generated method stub
 		return canvas;
 	}
 

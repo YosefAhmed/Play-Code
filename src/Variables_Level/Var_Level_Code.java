@@ -1,28 +1,19 @@
 package Variables_Level;
 
-import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferStrategy;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import forms.Code_Form;
+import forms.Phase_Form;
 import graphics.Assets;
 
-public class Var_Level_Code extends Code_Form{
+public class Var_Level_Code extends Phase_Form{
 
+	public Var_Level_Code()
+	{
+		setTitle("Variables Code");
+	}
 	@Override
 	public void DisplayImg(int i) {
-		// TODO Auto-generated method stub
-		ImageIcon icon = new ImageIcon(Assets.CodePhaseData_lvl2[i]);
+		ImageIcon icon = new ImageIcon(Assets.CodePhaseData_lvl1[i]);
         Image img = icon.getImage();
         Image newImg = img.getScaledInstance(pic.getWidth(), pic.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon newImc = new ImageIcon(newImg);
@@ -32,8 +23,13 @@ public class Var_Level_Code extends Code_Form{
 
 	@Override
 	public void setNoOfImages() {
-		NoOfImages = Assets.CodePhaseData_lvl2.length;
+		NoOfImages = Assets.CodePhaseData_lvl1.length;
 		
+	}
+	@Override
+	public void finish() {
+		System.exit(0);
+
 	}
 
 }

@@ -2,23 +2,15 @@ package forms;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Toolkit;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
 import IF_Level.IF_Level_Intro;
-import IF_Level.IF_form;
-import Loops_Level.Loops_Form;
 import Start.Launcher;
+import Variables_Level.Var_Level_Intro;
 import Variables_Level.Var_form;
 import graphics.Assets;
 
@@ -30,17 +22,19 @@ public class Main_Form extends JFrame {
 	private JPanel contentPane;
 	private JLabel image;
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	
+	
+	
 	public Main_Form()
 	{
 		
 		Assets.init();
 		setIconImage(Assets.icon);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//setBounds(screenSize.width/4, screenSize.height/100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-			image = new JLabel(new ImageIcon(Assets.mainBacKground));
+		image = new JLabel(new ImageIcon(Assets.mainBacKground));
 
 		
 	// level 1 button 
@@ -54,14 +48,8 @@ public class Main_Form extends JFrame {
 				{
 					public void actionPerformed(ActionEvent e) 
 					{
-						Var_form game = new Var_form();
-						
-						game.start();
-						System.out.println("i'v been started");
-						Launcher.m.dispose();
-						System.out.println("i'v been hiden");
-
-						//Launcher.m.dispose();
+						Var_Level_Intro intro = new Var_Level_Intro();
+						Launcher.m.dispose();					
 					}
 				});
 		
@@ -76,9 +64,8 @@ public class Main_Form extends JFrame {
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				new IF_Level_Intro();
+				 IF_Level_Intro intro = new IF_Level_Intro();
 				Launcher.m.setVisible(false);
-				//Launcher.m.dispose();
 			}
 		});
 				
@@ -92,10 +79,7 @@ public class Main_Form extends JFrame {
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				Loops_Form game = new Loops_Form();
-				game.start();
-				Launcher.m.setVisible(false);
-				//Launcher.m.dispose();
+				
 			}
 		});
 				

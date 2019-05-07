@@ -8,8 +8,6 @@ import javafx.util.Pair;
 
 public class Locations {
 
-  //contains a character that represents the location of the click
-	private byte location=0;
 	private Pair<String,String> Location;
   //to get size of the canvas 
 	private GameForm game;
@@ -27,9 +25,9 @@ public class Locations {
 	private static DecimalFormat df2 =new DecimalFormat("#.###");
 	public int relateToCanvas(float pixels,char coordinate) {
 		if(coordinate=='x')
-			return (int)(game.getcanvas().getWidth()*(Float.valueOf(df2.format(pixels/809))));
+			return (int)(game.getcanvas().getWidth()*(Float.valueOf(df2.format(pixels/809))));//809
 		else
-			return (int)(game.getcanvas().getHeight()*(Float.valueOf(df2.format(pixels/562))));
+			return (int)(game.getcanvas().getHeight()*(Float.valueOf(df2.format(pixels/562))));//562
 	}
 	
 	public Pair<String, String> CheckLocation(int clickX, int clickY) 
@@ -106,21 +104,21 @@ public class Locations {
 			Location = new Pair<String, String>("Wrong", "Wrong");
 			return Location;
 	}
-	
+	// check object location
 	public String checkObjectLocation(int clickX, int clickY, int imgIndex)
 	{
 		if(clickX > relateToCanvas(280, 'x') && clickX < relateToCanvas(280+170, 'x') && clickY > relateToCanvas(380, 'y') && clickY < relateToCanvas(500, 'y') )
 		{
-			if(imgIndex >=0 && imgIndex <=2) {
+			if(imgIndex ==0 || imgIndex ==4  || imgIndex ==6  || imgIndex ==11) {
 				lastObject="S";
 				return "S";	
 			}
 			 
-			else if(imgIndex >=3 && imgIndex <=5) {
+			else if(imgIndex ==1 || imgIndex ==3  || imgIndex ==9  || imgIndex ==10) {
 				lastObject="F";
 				return "F";
 			}
-			else if(imgIndex >=6 && imgIndex <=8) {
+			else if(imgIndex ==8 || imgIndex ==7  || imgIndex ==5  || imgIndex ==2) {
 				lastObject="I"; 
 				return "I";
 			}

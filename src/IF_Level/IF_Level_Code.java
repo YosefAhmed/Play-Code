@@ -4,14 +4,17 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
-import forms.Code_Form;
+import forms.Phase_Form;
 import graphics.Assets;
 
-public class IF_Level_Code extends Code_Form{
+public class IF_Level_Code extends Phase_Form{
 	
+	public IF_Level_Code()
+	{
+		setTitle("IF Code");
+	}
 	@Override
 	public void DisplayImg(int i) {
-		// TODO Auto-generated method stub
 		ImageIcon icon = new ImageIcon(Assets.CodePhaseData_lvl2[i]);
         Image img = icon.getImage();
         Image newImg = img.getScaledInstance(pic.getWidth(), pic.getHeight(), Image.SCALE_SMOOTH);
@@ -22,8 +25,13 @@ public class IF_Level_Code extends Code_Form{
 
 	@Override
 	public void setNoOfImages() {
-		NoOfImages = Assets.CodePhaseData_lvl2.length-1;
+		NoOfImages = Assets.CodePhaseData_lvl2.length;
 		
 	}
+	@Override
+	public void finish() {
+		System.exit(0);		
+	}
+	
 
 }
