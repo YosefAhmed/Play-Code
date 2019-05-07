@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Play_Cod">
+  <ClassDiagramComponents>
+    <Class name="bag" package="Entities" visibility="public" xPosition="385.0" yPosition="1016.0">
+      <Fields>
+        <Field name="g" type="Player" visibility="private"/>
+        <Field name="cardName" type="String" visibility="private"/>
+        <Field name="cardNo" type="int" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="isEmpty" returnType="boolean" visibility="public"/>
+        <Method name="set_card" returnType="void" visibility="public">
+          <Argument type="String" name="card"/>
+        </Method>
+        <Method name="set_cardNo" returnType="void" visibility="public">
+          <Argument type="int" name="cardNo"/>
+        </Method>
+        <Method name="get_card" returnType="String" visibility="public"/>
+        <Method name="get_cardNo" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Player" package="Entities" visibility="public" xPosition="507.0" yPosition="632.0">
+      <Fields>
+        <Field name="x" type="float" visibility="private" isStatic="true"/>
+        <Field name="y" type="float" visibility="private" isStatic="true"/>
+        <Field name="game" type="IF_form" visibility="public" isStatic="true"/>
+        <Field name="IsFinished" type="boolean" visibility="public" isStatic="true"/>
+        <Field name="coll" type="collision" visibility="public" isStatic="true"/>
+        <Field name="markY" type="String" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="IF_form" name="game"/>
+          <Argument type="float" name="x"/>
+          <Argument type="float" name="y"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="tick" returnType="void" visibility="public"/>
+        <Method name="render" returnType="void" visibility="public">
+          <Argument type="Graphics" name="g"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="GameForm" package="forms" visibility="public" isAbstract="true" xPosition="1020.0" yPosition="534.0">
+      <Fields>
+        <Field name="thread" type="Thread" visibility="private"/>
+        <Field name="running" type="boolean" visibility="private"/>
+        <Field name="frmGame" type="JFrame" visibility="public" isStatic="true"/>
+        <Field name="canvas1" type="Canvas" visibility="protected" isStatic="true"/>
+        <Field name="canvas" type="Canvas" visibility="protected" isStatic="true"/>
+        <Field name="panel" type="JPanel" visibility="protected" isStatic="true"/>
+        <Field name="backed" type="boolean" visibility="protected"/>
+        <Field name="bs" type="BufferStrategy" visibility="protected"/>
+        <Field name="bs1" type="BufferStrategy" visibility="protected"/>
+        <Field name="g" type="Graphics" visibility="public"/>
+        <Field name="g1" type="Graphics" visibility="public"/>
+        <Field name="sheet" type="SpriteSheet" visibility="private"/>
+        <Field name="gamestate" type="IF_state" visibility="protected"/>
+        <Field name="back_btn" type="JButton" visibility="protected"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="initialize" returnType="void" visibility="protected"/>
+        <Method name="init" returnType="void" visibility="protected" isAbstract="true"/>
+        <Method name="tick" returnType="void" visibility="protected" isAbstract="true"/>
+        <Method name="render" returnType="void" visibility="protected" isAbstract="true"/>
+        <Method name="run" returnType="void" visibility="public"/>
+        <Method name="start" returnType="void" visibility="public" isSynchronized="true"/>
+        <Method name="stop" returnType="void" visibility="public" isSynchronized="true"/>
+        <Method name="getcanvas" returnType="Canvas" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Main_Form" package="forms" visibility="public" xPosition="141.0" yPosition="953.0">
+      <Fields>
+        <Field name="contentPane" type="JPanel" visibility="private"/>
+        <Field name="image" type="JLabel" visibility="private"/>
+        <Field name="screenSize" type="Dimension" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Phase_Form" package="forms" visibility="public" isAbstract="true" xPosition="70.0" yPosition="454.0">
+      <Fields>
+        <Field name="pic" type="JLabel" visibility="protected"/>
+        <Field name="NextBt" type="JButton" visibility="private"/>
+        <Field name="CurrentImage" type="int" visibility="public" isStatic="true"/>
+        <Field name="NoOfImages" type="int" visibility="protected"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="setNoOfImages" returnType="void" visibility="public" isAbstract="true"/>
+        <Method name="DisplayImg" returnType="void" visibility="public" isAbstract="true">
+          <Argument type="int" name="i"/>
+        </Method>
+        <Method name="finish" returnType="void" visibility="public" isAbstract="true"/>
+      </Methods>
+    </Class>
+    <Class name="Animation" package="graphics" visibility="public" xPosition="961.0" yPosition="1595.0">
+      <Fields>
+        <Field name="speed" type="int" visibility="private"/>
+        <Field name="lastTime" type="long" visibility="private"/>
+        <Field name="frames" type="BufferedImage[]" visibility="private"/>
+        <Field name="NoFrames" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="speed"/>
+          <Argument type="BufferedImage[]" name="frames"/>
+          <Argument type="int" name="NoFrames"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="tick" returnType="void" visibility="public"/>
+        <Method name="getCurrentFrame" returnType="BufferedImage" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Assets" package="graphics" visibility="public" xPosition="87.0" yPosition="1404.0">
+      <Fields>
+        <Field name="icon" type="BufferedImage" visibility="public" isStatic="true"/>
+        <Field name="mainBacKground" type="BufferedImage" visibility="public" isStatic="true"/>
+        <Field name="player" type="BufferedImage" visibility="public" isStatic="true"/>
+        <Field name="msgs" type="BufferedImage" visibility="public" isStatic="true"/>
+        <Field name="card" type="BufferedImage" visibility="public" isStatic="true"/>
+        <Field name="VIPID" type="BufferedImage" visibility="public" isStatic="true"/>
+        <Field name="OrdinaryID" type="BufferedImage" visibility="public" isStatic="true"/>
+        <Field name="Messages" type="boolean" visibility="public" isStatic="true"/>
+        <Field name="CodePhaseData_lvl2" type="BufferedImage" visibility="public" isStatic="true"/>
+        <Field name="IntroPhaseData_lvl2" type="BufferedImage" visibility="public" isStatic="true"/>
+        <Field name="CodePhaseData_lvl1" type="BufferedImage" visibility="public" isStatic="true"/>
+        <Field name="IntroPhaseData_lvl1" type="BufferedImage" visibility="public" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="init" returnType="void" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="collision" package="graphics" visibility="public" xPosition="550.0" yPosition="1455.0">
+      <Fields>
+        <Field name="animationBlocks" type="boolean" visibility="public" isStatic="true"/>
+        <Field name="IsFinished" type="boolean" visibility="public" isStatic="true"/>
+        <Field name="firstTime" type="boolean" visibility="private" isStatic="true"/>
+        <Field name="rand" type="Random" visibility="package"/>
+        <Field name="topBlock" type="Animation" visibility="public" isStatic="true"/>
+        <Field name="centerBlock" type="Animation" visibility="public" isStatic="true"/>
+        <Field name="rightDownBlock" type="Animation" visibility="public" isStatic="true"/>
+        <Field name="centerDownBlock" type="Animation" visibility="public" isStatic="true"/>
+        <Field name="leftDownBlock" type="Animation" visibility="public" isStatic="true"/>
+        <Field name="bag" type="bag" visibility="public" isStatic="true"/>
+        <Field name="markY" type="String" visibility="private"/>
+        <Field name="x" type="float" visibility="private"/>
+        <Field name="cootdinates" type="Pair&lt;Float, Float&gt;" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="float" name="x"/>
+          <Argument type="float" name="y"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="resetMarks" returnType="void" visibility="public"/>
+        <Method name="leftCollision" returnType="void" visibility="public"/>
+        <Method name="rightCollision" returnType="void" visibility="public"/>
+        <Method name="downWalksidesCollision" returnType="void" visibility="public"/>
+        <Method name="blocksCollision" returnType="void" visibility="public"/>
+        <Method name="getX" returnType="float" visibility="public"/>
+        <Method name="getY" returnType="float" visibility="public"/>
+        <Method name="setX" returnType="void" visibility="public">
+          <Argument type="float" name="x"/>
+        </Method>
+        <Method name="setY" returnType="void" visibility="public">
+          <Argument type="float" name="y"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ImageLoader" package="graphics" visibility="public" xPosition="82.0" yPosition="1796.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="loadImage" returnType="BufferedImage" visibility="public" isStatic="true">
+          <Argument type="String" name="path"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Locations" package="graphics" visibility="public" xPosition="1105.0" yPosition="1105.0">
+      <Fields>
+        <Field name="Location" type="Pair&lt;String, String&gt;" visibility="private"/>
+        <Field name="game" type="GameForm" visibility="private"/>
+        <Field name="lastObject" type="String" visibility="public"/>
+        <Field name="df2" type="DecimalFormat" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="GameForm" name="game"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="relateToCanvas" returnType="int" visibility="public">
+          <Argument type="float" name="pixels"/>
+          <Argument type="char" name="coordinate"/>
+        </Method>
+        <Method name="CheckLocation" returnType="Pair&lt;String, String&gt;" visibility="public">
+          <Argument type="int" name="clickX"/>
+          <Argument type="int" name="clickY"/>
+        </Method>
+        <Method name="checkObjectLocation" returnType="String" visibility="public">
+          <Argument type="int" name="clickX"/>
+          <Argument type="int" name="clickY"/>
+          <Argument type="int" name="imgIndex"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="SpriteSheet" package="graphics" visibility="public" xPosition="1212.0" yPosition="618.0">
+      <Fields>
+        <Field name="sheet" type="BufferedImage" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="BufferedImage" name="sheet"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="crop" returnType="BufferedImage" visibility="public">
+          <Argument type="int" name="x"/>
+          <Argument type="int" name="y"/>
+          <Argument type="int" name="width"/>
+          <Argument type="int" name="height"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="IF_form" package="IF_Level" visibility="public" xPosition="751.0" yPosition="410.0">
+      <Fields>
+        <Field name="keyManager" type="KeyManager" visibility="protected"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="init" returnType="void" visibility="protected"/>
+        <Method name="tick" returnType="void" visibility="protected"/>
+        <Method name="render" returnType="void" visibility="protected"/>
+        <Method name="getKeyManager" returnType="KeyManager" visibility="public"/>
+        <Method name="get_canvas" returnType="Canvas" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="IF_Level_Code" package="IF_Level" visibility="public" xPosition="264.0" yPosition="569.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="DisplayImg" returnType="void" visibility="public">
+          <Argument type="int" name="i"/>
+        </Method>
+        <Method name="setNoOfImages" returnType="void" visibility="public"/>
+        <Method name="finish" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="IF_Level_Intro" package="IF_Level" visibility="public" xPosition="330.0" yPosition="347.0">
+      <Fields>
+        <Field name="g" type="IF_form" visibility="public"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="setNoOfImages" returnType="void" visibility="public"/>
+        <Method name="DisplayImg" returnType="void" visibility="public">
+          <Argument type="int" name="i"/>
+        </Method>
+        <Method name="finish" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="KeyManager" package="Input" visibility="public" xPosition="783.0" yPosition="809.0">
+      <Fields>
+        <Field name="keys" type="boolean[]" visibility="private"/>
+        <Field name="up" type="boolean" visibility="public"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="tick" returnType="void" visibility="public"/>
+        <Method name="keyReleased" returnType="void" visibility="public">
+          <Argument type="KeyEvent" name="e"/>
+        </Method>
+        <Method name="keyTyped" returnType="void" visibility="public">
+          <Argument type="KeyEvent" name="e"/>
+        </Method>
+        <Method name="keyPressed" returnType="void" visibility="public">
+          <Argument type="KeyEvent" name="e"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="MouseManager" package="Input" visibility="public" xPosition="980.0" yPosition="1273.0">
+      <Fields>
+        <Field name="x" type="int" visibility="public"/>
+        <Field name="pressed" type="boolean" visibility="public"/>
+        <Field name="pressDown" type="int" visibility="public"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="tick" returnType="void" visibility="public"/>
+        <Method name="mouseDragged" returnType="void" visibility="public">
+          <Argument type="MouseEvent" name="e"/>
+        </Method>
+        <Method name="mouseMoved" returnType="void" visibility="public">
+          <Argument type="MouseEvent" name="arg0"/>
+        </Method>
+        <Method name="mouseClicked" returnType="void" visibility="public">
+          <Argument type="MouseEvent" name="e"/>
+        </Method>
+        <Method name="mouseEntered" returnType="void" visibility="public">
+          <Argument type="MouseEvent" name="e"/>
+        </Method>
+        <Method name="mouseExited" returnType="void" visibility="public">
+          <Argument type="MouseEvent" name="arg0"/>
+        </Method>
+        <Method name="mousePressed" returnType="void" visibility="public">
+          <Argument type="MouseEvent" name="e"/>
+        </Method>
+        <Method name="mouseReleased" returnType="void" visibility="public">
+          <Argument type="MouseEvent" name="e"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Launcher" package="Start" visibility="public" xPosition="124.0" yPosition="1219.0">
+      <Fields>
+        <Field name="m" type="Main_Form" visibility="public" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="IF_state" package="States" visibility="public" xPosition="1062.0" yPosition="295.0">
+      <Fields>
+        <Field name="player" type="Player" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="IF_form" name="game"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="tick" returnType="void" visibility="public"/>
+        <Method name="render" returnType="void" visibility="public">
+          <Argument type="Graphics" name="g"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="state" package="States" visibility="public" isAbstract="true" xPosition="1499.0" yPosition="788.0">
+      <Fields>
+        <Field name="currentstate" type="state" visibility="private" isStatic="true"/>
+        <Field name="game" type="GameForm" visibility="protected"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="GameForm" name="game"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setState" returnType="void" visibility="public" isStatic="true">
+          <Argument type="state" name="state"/>
+        </Method>
+        <Method name="getState" returnType="state" visibility="public" isStatic="true"/>
+        <Method name="tick" returnType="void" visibility="public" isAbstract="true"/>
+        <Method name="render" returnType="void" visibility="public" isAbstract="true">
+          <Argument type="Graphics" name="g"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Var_form" package="Variables_Level" visibility="public" xPosition="783.0" yPosition="978.0">
+      <Fields>
+        <Field name="pic" type="int" visibility="private"/>
+        <Field name="move" type="MouseManager" visibility="package"/>
+        <Field name="isFinished" type="boolean" visibility="package"/>
+        <Field name="library" type="int" visibility="package"/>
+        <Field name="loc" type="Locations" visibility="package"/>
+        <Field name="newX" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="init" returnType="void" visibility="protected"/>
+        <Method name="tick" returnType="void" visibility="protected"/>
+        <Method name="render" returnType="void" visibility="protected"/>
+      </Methods>
+    </Class>
+    <Class name="Var_Level_Code" package="Variables_Level" visibility="public" xPosition="70.0" yPosition="333.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="DisplayImg" returnType="void" visibility="public">
+          <Argument type="int" name="i"/>
+        </Method>
+        <Method name="setNoOfImages" returnType="void" visibility="public"/>
+        <Method name="finish" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Var_Level_Intro" package="Variables_Level" visibility="public" xPosition="70.0" yPosition="746.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="setNoOfImages" returnType="void" visibility="public"/>
+        <Method name="DisplayImg" returnType="void" visibility="public">
+          <Argument type="int" name="i"/>
+        </Method>
+        <Method name="finish" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <IsRelation name="is" source="Variables_Level.Var_Level_Code" target="forms.Phase_Form"/>
+    <HasRelation name="gamestate" source="forms.GameForm" target="States.IF_state" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="player" source="States.IF_state" target="Entities.Player" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="sheet" source="forms.GameForm" target="graphics.SpriteSheet" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="move" source="Variables_Level.Var_form" target="Input.MouseManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="loc" source="Variables_Level.Var_form" target="graphics.Locations" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="centerDownBlock" source="graphics.collision" target="graphics.Animation" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="game" source="States.state" target="forms.GameForm" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="m" source="Start.Launcher" target="forms.Main_Form" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="g" source="Entities.bag" target="Entities.Player" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="IF_Level.IF_Level_Intro" target="forms.Phase_Form"/>
+    <HasRelation name="leftDownBlock" source="graphics.collision" target="graphics.Animation" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="rightDownBlock" source="graphics.collision" target="graphics.Animation" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="game" source="Entities.Player" target="IF_Level.IF_form" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="keyManager" source="IF_Level.IF_form" target="Input.KeyManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Variables_Level.Var_form" target="forms.GameForm"/>
+    <HasRelation name="bag" source="graphics.collision" target="Entities.bag" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="States.IF_state" target="States.state"/>
+    <IsRelation name="is" source="IF_Level.IF_form" target="forms.GameForm"/>
+    <IsRelation name="is" source="IF_Level.IF_Level_Code" target="forms.Phase_Form"/>
+    <IsRelation name="is" source="Variables_Level.Var_Level_Intro" target="forms.Phase_Form"/>
+    <HasRelation name="g" source="IF_Level.IF_Level_Intro" target="IF_Level.IF_form" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="game" source="graphics.Locations" target="forms.GameForm" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="centerBlock" source="graphics.collision" target="graphics.Animation" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="coll" source="Entities.Player" target="graphics.collision" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="topBlock" source="graphics.collision" target="graphics.Animation" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="IF_Level.IF_form" target="Input.KeyManager" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="currentstate" source="States.state" target="States.state" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="States.state" target="States.state" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
