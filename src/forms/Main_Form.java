@@ -69,7 +69,7 @@ public class Main_Form extends JFrame {
 			}
 		});
 				
-	// level 3 button 
+	/*// level 3 button 
 		JButton lvl3Button = new JButton("");
 		lvl3Button.setIcon(new ImageIcon(Assets.mainLevel3Button));
 		lvl3Button.setBounds(screenSize.width/20, (screenSize.height*1/2)+200, 200, 80);
@@ -82,7 +82,7 @@ public class Main_Form extends JFrame {
 				
 			}
 		});
-				
+				*/
 				
 				
 		contentPane.add(image);
